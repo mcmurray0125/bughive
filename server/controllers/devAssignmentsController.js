@@ -16,7 +16,7 @@ module.exports = {
                 .status(201)
                 .json({ msg: `User ${devId} assigned to ${ticketId} succesfully` })
         } catch (error) {
-            console.log("assignUsers query error: ", err);
+            console.log("assignUsers query error: ", error);
             res
               .status(400)
               .json({ msg: "Please review user project assign creation query" });

@@ -13,7 +13,7 @@ module.exports = {
         [authorId, ticketId, comment]
       );
 
-      res.status(201).json({ msg: `Comment on ticket${ticketId} created` });
+      res.status(201).json({ msg: `Comment on ticket ${ticketId} created` });
     } catch (err) {
       console.log(`Failed to create message for ${ticketId}: `, "\n", err);
       res.status(500).json({ msg: `Please review query` });

@@ -11,8 +11,8 @@ const Footer = () => {
           <div className="copyright text-center text-xl-left text-muted">
             © {new Date().getFullYear()}{" "}
             <a
-              className="font-weight-bold ml-1"
-              href="https://github.com/connorleee/BugTracker"
+              className="fw-bold ml-1"
+              href="https://github.com/mcmurray0125"
               rel="noopener noreferrer"
               target="_blank"
             >

@@ -6,9 +6,9 @@ import { Navbar, Container } from "reactstrap";
 const GeneralNavbar = (props) => {
   return (
     <>
-      <Navbar className="navbar-top navbar-dark" expand="md" id="navbar-main">
+      <Navbar className="navbar-top navbar-dark border border-primary" expand="md" id="navbar-main">
         <Container fluid>
-          <div className="h1 mb-0 text-white text-uppercase d-none d-lg-inline-block">
+          <div className="h1 mb-0 text-uppercase d-none d-lg-inline-block">
             {props.brandText}
           </div>
         </Container>

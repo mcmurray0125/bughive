@@ -10,86 +10,6 @@ import Project from "./views/Project";
 import Auth from "./layouts/Auth";
 import General from "./layouts/General"
 
-var routes = [
-  {
-    path: "/index",
-    name: "Dashboard",
-    icon: "fa-solid fa-display",
-    element: Index,
-    layout: "general",
-    root: "/general",
-    display: true,
-  },
-  {
-    path: "/index",
-    name: "Dashboard",
-    icon: "fa-solid fa-display",
-    element: Index,
-    layout: "admin",
-    root: "/admin",
-    display: true,
-  },
-  {
-    path: "/tickets",
-    name: "Tickets",
-    icon: "fa-solid fa-book",
-    element: Tickets,
-    layout: "general",
-    root: "/general",
-    display: true,
-  },
-  {
-    path: "/tickets",
-    name: "Tickets",
-    icon: "fa-solid fa-book",
-    element: Tickets,
-    layout: "admin",
-    root: "/admin",
-    display: true,
-  },
-  {
-    path: "/administration",
-    name: "Administration",
-    icon: "fa-solid fa-toolbox",
-    element: Administration,
-    layout: "admin",
-    root: "/admin",
-    display: true,
-  },
-  {
-    path: "/login",
-    name: "Login",
-    icon: "ni ni-key-25 text-info",
-    element: <Login />,
-    layout: "auth",
-    root: "/auth",
-  },
-  {
-    path: "/register",
-    name: "Register",
-    icon: "ni ni-circle-08 text-pink",
-    element: Register,
-    layout: "auth",
-    root: "/auth",
-  },
-  {
-    path: "/project/:id",
-    name: "Project",
-    element: Project,
-    layout: "general",
-    root: "/general",
-    display: false,
-  },
-  {
-    path: "/project/:id",
-    name: "Project",
-    element: Project,
-    layout: "admin",
-    root: "/admin",
-    display: false,
-  }
-];
-
 const router = createBrowserRouter([
   {
     path: "/auth/*",
@@ -116,14 +36,20 @@ const router = createBrowserRouter([
     element: <General />,
     children: [
       {
-        path: "",
+        path: "index",
         icon: "fa-solid fa-display",
         element: <Index />,
+        layout: "general",
+        name: "Dashboard",
+        display: true,
       },
       {
         path: "tickets",
         icon: "fa-solid fa-book",
         element: <Tickets />,
+        name: "Tickets",
+        layout: "general",
+        display: true,
       },
       {
         path: "project/:id",

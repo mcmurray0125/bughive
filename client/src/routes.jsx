@@ -1,16 +1,21 @@
-import Index from "views/Index";
-import Register from "views/Register";
-import Login from "views/Login";
-import Administration from "views/Administration";
-import Tickets from "views/Tickets";
-import Project from "views/Project";
+import { createBrowserRouter } from "react-router-dom";
+
+import Index from "./views/Index";
+import Register from "./views/Register";
+import Login from "./views/Login";
+import Administration from "./views/Administration";
+import Tickets from "./views/Tickets";
+import Project from "./views/Project";
+
+import Auth from "./layouts/Auth";
+import General from "./layouts/General"
 
 var routes = [
   {
     path: "/index",
     name: "Dashboard",
     icon: "fa-solid fa-display",
-    component: Index,
+    element: Index,
     layout: "general",
     root: "/general",
     display: true,
@@ -19,7 +24,7 @@ var routes = [
     path: "/index",
     name: "Dashboard",
     icon: "fa-solid fa-display",
-    component: Index,
+    element: Index,
     layout: "admin",
     root: "/admin",
     display: true,
@@ -28,7 +33,7 @@ var routes = [
     path: "/tickets",
     name: "Tickets",
     icon: "fa-solid fa-book",
-    component: Tickets,
+    element: Tickets,
     layout: "general",
     root: "/general",
     display: true,
@@ -37,7 +42,7 @@ var routes = [
     path: "/tickets",
     name: "Tickets",
     icon: "fa-solid fa-book",
-    component: Tickets,
+    element: Tickets,
     layout: "admin",
     root: "/admin",
     display: true,
@@ -46,7 +51,7 @@ var routes = [
     path: "/administration",
     name: "Administration",
     icon: "fa-solid fa-toolbox",
-    component: Administration,
+    element: Administration,
     layout: "admin",
     root: "/admin",
     display: true,
@@ -55,7 +60,7 @@ var routes = [
     path: "/login",
     name: "Login",
     icon: "ni ni-key-25 text-info",
-    component: Login,
+    element: <Login />,
     layout: "auth",
     root: "/auth",
   },
@@ -63,14 +68,14 @@ var routes = [
     path: "/register",
     name: "Register",
     icon: "ni ni-circle-08 text-pink",
-    component: Register,
+    element: Register,
     layout: "auth",
     root: "/auth",
   },
   {
     path: "/project/:id",
     name: "Project",
-    component: Project,
+    element: Project,
     layout: "general",
     root: "/general",
     display: false,
@@ -78,10 +83,55 @@ var routes = [
   {
     path: "/project/:id",
     name: "Project",
-    component: Project,
+    element: Project,
     layout: "admin",
     root: "/admin",
     display: false,
-  },
+  }
 ];
-export default routes;
+
+const router = createBrowserRouter([
+  {
+    path: "/auth/*",
+    routeName: "auth",
+    element: <Auth />,
+    children: [
+      {
+        path: "login",
+        name: "Login",
+        icon: "ni ni-key-25 text-info",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        name: "Register",
+        icon: "ni ni-circle-08 text-pink",
+        element: <Register />,
+      },
+    ],
+  },
+  {
+    path: "/general/*",
+    routeName: "general",
+    element: <General />,
+    children: [
+      {
+        path: "",
+        icon: "fa-solid fa-display",
+        element: <Index />,
+      },
+      {
+        path: "tickets",
+        icon: "fa-solid fa-book",
+        element: <Tickets />,
+      },
+      {
+        path: "project/:id",
+        element: <Project />,
+      },
+    ],
+  }
+]);
+
+export default router
+

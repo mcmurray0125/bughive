@@ -8,6 +8,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
     const [userAuth, setUserAuth] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     //Check if user has a valid token
     //If token, navigate to index/home

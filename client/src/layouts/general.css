@@ -16,13 +16,15 @@
   background-color: #e8e8e8;
   min-width: calc(100dvw - 273px);
 }
-
+/* SIDEBAR */
 #navbar-main {
   background-color: white;
+  height: 102px;
+  border-bottom: 1px solid #e8e8e8;
 }
 
 .nav-item {
-  height: 62px;
+  max-height: 62px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,4 +48,48 @@
 
 .nav-item i {
   margin-right: 1rem;
+}
+.sidebar hr {
+  margin: 0px 12px;
+  border: 1px dashed red;
+}
+.logout-btn {
+  width: 100px;
+}
+
+/* PROJECTS TABLE */
+.table-wrapper {
+  border-radius: 6px;
+  border: solid 2px #e0e1e4;
+}
+.dashboard-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding: 6px;
+}
+.projects-table {
+  background-color: white;
+}
+.projects-more {
+  cursor: pointer;
+}
+.footer-container {
+  margin-top: auto;
+}
+.dashboard-btn {
+  background-color: #f7f7f7 !important;
+  color: #1a2b88 !important;
+  border-color: transparent !important;
+  border-radius: 10px !important;
+}
+.projects-table th {
+  font-size: 1rem;
+  color: #949494;
+  font-weight: 300;
+}
+.projects-table td {
+  height: 42px;
+  border: none;
+  font-weight: 600;
 }

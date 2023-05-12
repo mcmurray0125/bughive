@@ -33,7 +33,7 @@ const General = (props) => {
             brandText="Dashboard"
           />
         <Outlet/>
-        <Container fluid>
+        <Container className="footer-container p-3" fluid>
           <GeneralFooter />
         </Container>
       </div>

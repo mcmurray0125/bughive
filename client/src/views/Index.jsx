@@ -1,10 +1,12 @@
 import React from "react";
+import ProjectTable from "../components/Tables/ProjectTable";
+import { Container } from "reactstrap"
 
 export default function Index() {
     
     return(
-        <div>
-            Dashboard
-        </div>
+        <Container className="dashboard-container py-2">
+            <ProjectTable/>
+        </Container>
     )
 }

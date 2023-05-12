@@ -1,11 +1,17 @@
 const router = require("express").Router();
 const userProjectsController = require("../../controllers/userProjectsController");
+const authorization = require("../../middleware/authorization");
 
 router
   // Matches route with "/api/userprojects/:projectId"
   .route("/:projectId")
-  .get(userProjectsController.getProjectUsers)
-  .post(userProjectsController.addUserToProject)
-  .delete(userProjectsController.removeUserFromProject);
+  .get(authorization, userProjectsController.getProjectUsers)
+  .post(authorization, userProjectsController.addUserToProject)
+  .delete(authorization, userProjectsController.removeUserFromProject);
+
+  // Matches route with "/api/userprojects/:projectId/:userId"
+router
+  .route("/:projectId/:userId")
+  .delete(authorization, userProjectsController.removeUserFromProject);
 
 module.exports = router;

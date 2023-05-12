@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom';
 import {
   NavItem,
   Nav,
+  Button
 } from "reactstrap";
 
 const GeneralSidebar = (props) => {
@@ -54,8 +55,12 @@ const GeneralSidebar = (props) => {
 
 
   return (
-    <Nav vertical className="sidebar">
+    <Nav vertical justified className="sidebar">
       {router && createLinks()}
+      <hr/>
+      <NavItem>
+        <Button className="logout-btn">Logout</Button>
+      </NavItem>
     </Nav>
   );
 };

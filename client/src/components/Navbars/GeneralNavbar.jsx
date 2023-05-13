@@ -7,7 +7,7 @@ const GeneralNavbar = (props) => {
   return (
     <>
       <Navbar expand="md" id="navbar-main">
-        <Container>
+        <Container fluid>
           <h2>
             {props.brandText}
           </h2>

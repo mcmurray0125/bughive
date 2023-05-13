@@ -5,21 +5,21 @@ import { Row, Col } from "reactstrap"
 export default function Footer() {
     return(
         <footer className="footer">
-        <Row className="align-items-center justify-content-xl-between">
-          <Col xl="6">
-            <div className="copyright text-center text-xl-left text-muted">
-              © {new Date().getFullYear()}{" "}
-              <a
-                className="font-weight-bold ml-1"
-                href="https://github.com/connorleee/BugTracker"
-                rel="noopener noreferrer"
-                target="_blank"
-              >
-                Michael Murray
-              </a>
-            </div>
-          </Col>
-        </Row>
-      </footer>
+          <Row className="align-items-center justify-content-center">
+            <Col xl="6">
+              <div className="copyright text-center text-xl-left text-dark">
+                © {new Date().getFullYear()}{" "}
+                <a
+                  className="fw-bold ms-1 text-decoration-none text-dark"
+                  href="https://github.com/mcmurray0125/BugTracker"
+                  rel="noopener noreferrer"
+                  target="_blank"
+                >
+                  Michael Murray
+                </a>
+              </div>
+            </Col>
+          </Row>
+        </footer>
     )
 }

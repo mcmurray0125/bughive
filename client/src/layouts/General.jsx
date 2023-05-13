@@ -28,10 +28,10 @@ const General = (props) => {
           }}
         />
       <div className="main-content" >
-          <GeneralNavbar
-            {...props}
-            brandText="Dashboard"
-          />
+        <GeneralNavbar
+          {...props}
+          brandText="Dashboard"
+        />
         <Outlet/>
         <Container className="footer-container p-3" fluid>
           <GeneralFooter />

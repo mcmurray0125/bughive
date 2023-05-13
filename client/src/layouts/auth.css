@@ -1,0 +1,28 @@
+.auth-wrapper {
+  height: 100dvh;
+}
+.auth-card {
+  border-radius: 10px;
+  background-color: #f8f8f8;
+}
+.auth-card-wrapper {
+  max-width: 500px;
+}
+.name-inputs {
+  display: flex;
+  flex: 1;
+  gap: 0.25rem;
+}
+.login-links,
+.login-links a {
+  text-decoration: none;
+  color: white !important;
+}
+/* MEDIA QUERIES */
+@media screen and (max-width: 600px) {
+  .name-inputs {
+    width: 100%;
+    flex-direction: column;
+    gap: 0 !important;
+  }
+}

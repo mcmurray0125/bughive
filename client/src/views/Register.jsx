@@ -56,8 +56,8 @@ export default function Register() {
                 <Button className="mt-4">Sign in</Button>
             </Form>
         </div>
-        <div className="login-links d-flex mt-2">
-            Already have an account? &nbsp;<Link to="/auth/login" className="me-auto">Login</Link>
+        <div className="login-links d-flex mt-2 justify-content-center">
+            Already have an account? &nbsp;<Link to="/auth/login">Login</Link>
         </div>
         </>
     )

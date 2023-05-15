@@ -34,31 +34,31 @@ export default function Login() {
         
     async function submit() {
         console.log(values);
-        const response = await API.login(values);
-    
-        if (response.ok) {
-          // const { token, auth } = await response.json();
-          const { token, role } = await response.json();
-    
-          localStorage.setItem("token", token);
-          localStorage.setItem("role", role);
-    
-          setRole(role);
-          setAuth(true);
-    
-          if (role === "admin") {
+        try {
+            const response = await API.login(values);
+            const { token, role } = response.data;
+        
+            localStorage.setItem("token", token);
+            localStorage.setItem("role", role);
+        
+            setRole(role);
+            setAuth(true);
+        
+            if (role === "admin") {
             navigate("/admin/index");
-          } else if (role === "developer" || role === "project manager") {
+            } else if (role === "developer" || role === "project manager") {
             console.log("here");
             navigate("/general/index");
-          }
-    
-          values.email = "";
-          values.password = "";
-        } else {
-          alert("Invalid login");
+            }
+        
+            values.email = "";
+            values.password = "";
+        } catch (error) {
+            console.error(error);
+            alert("Invalid login");
         }
-      }
+        }
+          
     
     return(
         <>

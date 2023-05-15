@@ -1,26 +1,27 @@
 import axios from "axios"
+const baseURL = process.env.NODE_ENV === 'production'
+  ? "/api" // Assuming your production API endpoints start with "/api"
+  : "http://localhost:3100/api"; // Replace with your development API URL
+
+const apiInstance = axios.create({
+  baseURL: baseURL,
+});
 
 const API = {
 
   login: function (userInfo) {
-      return fetch("/api/login", {
+    return apiInstance.post("/login", userInfo);
+  },
+  
+  addUser: function (userData) {
+      return fetch(`/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          token: localStorage.getItem("token"),
         },
-        body: JSON.stringify(userInfo),
+        body: JSON.stringify(userData),
       });
     },
-    addUser: function (userData) {
-        return fetch(`/api/users`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userData),
-        });
-      },
 
     saveUser: function (userData) {
     return axios.post("/api/users", userData);

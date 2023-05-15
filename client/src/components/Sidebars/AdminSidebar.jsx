@@ -1,5 +1,6 @@
 /*eslint-disable*/
 import React, { useState } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 
 import {routes, router} from '../../routes';
 
@@ -13,6 +14,7 @@ import {
 
 const AdminSidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
+  const { setAuth, setRole } = useAuth();
 
   const adminRoute = routes.find(route => route.routeName === 'admin');
   const adminRoutes = adminRoute.children
@@ -49,8 +51,9 @@ const AdminSidebar = (props) => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    props.setAuth(false);
-    props.setAuthLevel("");
+    localStorage.removeItem("role");
+    setAuth(false);
+    setRole("");
   };
 
 
@@ -59,7 +62,7 @@ const AdminSidebar = (props) => {
       {router && createLinks()}
       <hr/>
       <NavItem>
-        <Button className="logout-btn">Logout</Button>
+        <Button className="logout-btn btn-danger" onClick={logout}>Log out</Button>
       </NavItem>
     </Nav>
   );

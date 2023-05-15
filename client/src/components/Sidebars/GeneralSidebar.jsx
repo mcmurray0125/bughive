@@ -49,17 +49,17 @@ const GeneralSidebar = (props) => {
 
   const logout = () => {
     localStorage.removeItem("token");
-    props.setAuth(false);
-    props.setAuthLevel("");
+    localStorage.removeItem("role");
+    setAuth(false);
+    setRole("");
   };
-
 
   return (
     <Nav vertical justified className="sidebar">
       {router && createLinks()}
       <hr/>
       <NavItem>
-        <Button className="logout-btn">Logout</Button>
+        <Button className="logout-btn btn-danger" onClick={logout}>Log out</Button>
       </NavItem>
     </Nav>
   );

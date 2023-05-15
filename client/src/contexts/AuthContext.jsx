@@ -7,22 +7,31 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-    const [userAuth, setUserAuth] = useState(null)
-    const [loading, setLoading] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(true);
+    const [authLevel, setAuthLevel] = useState("");
 
-    //Check if user has a valid token
-    //If token, navigate to index/home
-    //else navigate to Login.
+    let token = localStorage.getItem("token");
 
+    useEffect(() => {
+      if (token != null) {
+        setIsAuthenticated(true);
+      }
+    }, [token]);
+
+    const setAuth = (boolean) => {
+      setIsAuthenticated(boolean);
+    };
 
     const value = {
-        userAuth
+        isAuthenticated,
+        authLevel,
+        setAuth,
+        setAuthLevel
     }
-
 
   return (
     <AuthContext.Provider value={value}>
-        {!loading && children}
+        {children}
     </AuthContext.Provider>
   )
 }

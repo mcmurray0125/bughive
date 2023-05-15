@@ -11,12 +11,12 @@ import {
   Button
 } from "reactstrap";
 
-const GeneralSidebar = (props) => {
+const AdminSidebar = (props) => {
   const [collapseOpen, setCollapseOpen] = useState();
 
-  const generalRoute = routes.find(route => route.routeName === 'general');
-  const generalRoutes = generalRoute.children
-  console.log(generalRoutes);
+  const adminRoute = routes.find(route => route.routeName === 'admin');
+  const adminRoutes = adminRoute.children
+  console.log(adminRoutes);
 
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
@@ -28,8 +28,8 @@ const GeneralSidebar = (props) => {
   };
   // generate the links that appear in the left menu / Sidebar
   const createLinks = () => {
-    return generalRoutes.map((prop, key) => {
-      if (prop.layout === "general" && prop.display) {
+    return adminRoutes.map((prop, key) => {
+      if (prop.layout === "admin" && prop.display) {
         return (
           <NavItem key={key}>
             <NavLink
@@ -67,4 +67,4 @@ const GeneralSidebar = (props) => {
 };
 
 
-export default GeneralSidebar;
+export default AdminSidebar;

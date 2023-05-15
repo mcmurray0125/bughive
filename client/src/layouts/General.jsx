@@ -7,20 +7,22 @@ import logo from "../assets/react.svg"
 import GeneralNavbar from "../components/Navbars/GeneralNavbar";
 import GeneralFooter from "../components/Footers/GeneralFooter";
 import GeneralSidebar from "../components/Sidebars/GeneralSidebar";
+import { useAuth } from "../contexts/AuthContext";
 
 import "../layouts/general.css"
 
-import router from "../routes";
+import {routes} from "../routes";
 
 const General = (props) => {
-
+  const { isAuthenticated } = useAuth();
 
   return (
+    isAuthenticated?
     <>
     <div className="main-wrapper">
         <GeneralSidebar
           {...props}
-          routes={router}
+          routes={routes}
           logo={{
             innerLink: "/general/index",
             imgSrc: {logo},
@@ -39,6 +41,8 @@ const General = (props) => {
       </div>
     </div>
     </>
+    :
+    <Navigate to="/auth/login"/>
   );
 };
 

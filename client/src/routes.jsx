@@ -8,9 +8,10 @@ import Tickets from "./views/Tickets";
 import Project from "./views/Project";
 
 import Auth from "./layouts/Auth";
-import General from "./layouts/General"
+import Admin from "./layouts/Admin";
+import General from "./layouts/General";
 
-const router = createBrowserRouter([
+const routes = [
   {
     path: "/auth/*",
     routeName: "auth",
@@ -53,11 +54,49 @@ const router = createBrowserRouter([
       },
       {
         path: "project/:id",
+        layout: "general",
         element: <Project />,
       },
     ],
+  },
+  {
+    path: "/admin/*",
+    routeName: "admin",
+    element: <Admin />,
+    children: [
+      {
+        path: "index",
+        icon: "fa-solid fa-display",
+        element: <Index />,
+        layout: "admin",
+        name: "Dashboard",
+        display: true,
+      },
+      {
+        path: "tickets",
+        icon: "fa-solid fa-book",
+        element: <Tickets />,
+        name: "Tickets",
+        layout: "admin",
+        display: true,
+      },
+      {
+        path: "project/:id",
+        layout: "admin",
+        element: <Project />,
+      },
+      {
+        path: "administration",
+        name: "Admin",
+        icon: "fa-solid fa-toolbox",
+        layout: "admin",
+        element: <Administration />,
+        display: true
+      },
+    ],
   }
-]);
+]
 
-export default router
+const router = createBrowserRouter(routes);
 
+export { routes, router };

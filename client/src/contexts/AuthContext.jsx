@@ -8,13 +8,13 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
-    const [role, setRole] = useState("developer");
+    const [role, setRole] = useState("");
 
     let token = localStorage.getItem("token");
 
     useEffect(() => {
-      if (token != null) {
-        setIsAuthenticated(true);
+      if (token == null) {
+        setIsAuthenticated(false);
       }
     }, [token]);
 

@@ -16,7 +16,6 @@ const AdminSidebar = (props) => {
 
   const adminRoute = routes.find(route => route.routeName === 'admin');
   const adminRoutes = adminRoute.children
-  console.log(adminRoutes);
 
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {

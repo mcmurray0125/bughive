@@ -2,25 +2,25 @@ import axios from "axios"
 
 const API = {
 
-    login: function (userInfo) {
-        return fetch("/api/login", {
+  login: function (userInfo) {
+      return fetch("/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify(userInfo),
+      });
+    },
+    addUser: function (userData) {
+        return fetch(`/api/users`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            token: localStorage.getItem("token"),
           },
-          body: JSON.stringify(userInfo),
+          body: JSON.stringify(userData),
         });
       },
-      addUser: function (userData) {
-          return fetch(`/api/users`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(userData),
-          });
-        },
 
     saveUser: function (userData) {
     return axios.post("/api/users", userData);

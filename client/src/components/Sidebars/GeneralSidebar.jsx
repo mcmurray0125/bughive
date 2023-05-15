@@ -16,7 +16,6 @@ const GeneralSidebar = (props) => {
 
   const generalRoute = routes.find(route => route.routeName === 'general');
   const generalRoutes = generalRoute.children
-  console.log(generalRoutes);
 
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {

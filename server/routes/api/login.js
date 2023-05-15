@@ -33,7 +33,7 @@ router.post("/", async (req, res) => {
 
     res.json({
       token,
-      auth: user.rows[0].role,
+      role: user.rows[0].role,
     });
   } catch (err) {
     console.error(err.message);

@@ -1,5 +1,5 @@
-import React from "react";
-import { Outlet, Navigate } from "react-router-dom"
+import { useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom"
 import { Container } from "reactstrap"
 
 import AuthFooter from "../components/Footers/AuthFooter"
@@ -9,15 +9,24 @@ import "./auth.css"
 
 
 export default function Auth() {
-    const { isAuthenticated } = useAuth()
+    const { isAuthenticated, role } = useAuth()
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        // redirect user away from login page based on role
+        if (isAuthenticated && role) {
+          if (role === "admin") {
+            navigate("/admin/index");
+          } else {
+            navigate("/general/index");
+          }
+        }
+      }, [isAuthenticated, role]);
 
     return (
-        isAuthenticated ?
-        <Navigate to="/general/index" />
-
-        :
-        
         <>
+        {/* Add Ternary, and display a redirecting.. message if authenticated. */}
+        {!isAuthenticated &&
         <div className="bg-primary bg-gradient">
             <Container className="auth-wrapper d-flex flex-column align-items-center pt-5">
                 <header className="header text-center py-5">
@@ -32,8 +41,8 @@ export default function Auth() {
                     <AuthFooter />
                 </Container>
             </Container>
-
         </div>
+        }
         </>
     )
 }

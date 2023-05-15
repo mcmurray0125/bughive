@@ -8,7 +8,7 @@ export function useAuth() {
 
 export function AuthProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
-    const [authLevel, setAuthLevel] = useState("");
+    const [role, setRole] = useState("developer");
 
     let token = localStorage.getItem("token");
 
@@ -24,9 +24,9 @@ export function AuthProvider({ children }) {
 
     const value = {
         isAuthenticated,
-        authLevel,
+        role,
         setAuth,
-        setAuthLevel
+        setRole
     }
 
   return (

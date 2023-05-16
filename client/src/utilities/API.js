@@ -1,8 +1,10 @@
 import axios from "axios"
+
 const baseURL = process.env.NODE_ENV === 'production'
   ? "/api" // Assuming your production API endpoints start with "/api"
   : "http://localhost:3100/api"; // Replace with your development API URL
 
+ //Base URL for API calls 
 const apiInstance = axios.create({
   baseURL: baseURL,
 });
@@ -53,12 +55,13 @@ const API = {
       },
     //Gets All Projects
     getProjects: function () {
-        return fetch("/api/projects", {
-            headers: {
-                token: localStorage.getItem("token"),
-            },
-        }).then((res) => res.json());
-    },
+      return apiInstance.get("/projects", {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      })
+      .then((response) => response.data)
+    },    
     //Get Project by ID
     getProject: function (id, abortController) {
         let signal = null;

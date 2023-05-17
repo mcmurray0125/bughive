@@ -12,7 +12,11 @@ const apiInstance = axios.create({
 const API = {
 
   login: function (userInfo) {
-    return apiInstance.post("/login", userInfo);
+    return apiInstance.post("/login", userInfo, {
+      headers: {
+        token: localStorage.getItem("token"),
+      }
+    });
   },
   
   addUser: function (userData) {
@@ -54,13 +58,17 @@ const API = {
         return fetch("/api/users", { signal }).then((res) => res.json());
       },
     //Gets All Projects
-    getProjects: function () {
-      return apiInstance.get("/projects", {
+    getProjects: function() {
+      return fetch("http://localhost:3100/api/projects", {
         headers: {
           token: localStorage.getItem("token"),
-        },
+        }
       })
-      .then((response) => response.data)
+        .then((res) => res.json())
+        .catch((error) => {
+          console.error("Error fetching projects:", error);
+          throw error;
+        });
     },    
     //Get Project by ID
     getProject: function (id, abortController) {
@@ -74,16 +82,16 @@ const API = {
             }
         });
     },
-    getProjectUsers: function(projectId, abortController) {
-        let signal = null;
-        if (abortController) signal = abortController.signal;
-
-        return fetch(`/api/userProjects/${projectId}`, {
-            signal,
-            headers: {
-                token: localStorage.getItem("token"),
-            },
-        }).then((res) => res.json());
+    getProjectUsers: function (projectId, abortController) {
+      let signal = null;
+      if (abortController) signal = abortController.signal;
+  
+      return fetch(`http://localhost:3100/api/userprojects/${projectId}`, {
+        signal,
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }).then((res) => res.json());
     },
     getProjectTickets: function(projectId, abortController) {
         let signal = null;

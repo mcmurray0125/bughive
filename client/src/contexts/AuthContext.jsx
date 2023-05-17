@@ -16,6 +16,7 @@ export function AuthProvider({ children }) {
       if (token == null) {
         setIsAuthenticated(false);
       }
+      setRole(localStorage.getItem("role"))
     }, [token]);
 
     const setAuth = (boolean) => {

@@ -6,21 +6,34 @@ import API from "../../utilities/API";
 
 
 export default function ProjectTable() {
+    const [loading, setLoading] = useState(true);
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
+        console.log("loading");
         async function fetchProjects() {
           try {
             const projectsData = await API.getProjects();
             setProjects(projectsData);
+            setLoading(false);
             console.log(projectsData);
+            console.log("Finished");
           } catch (error) {
-            console.error(error.response.data);
+            console.log(error);
+            setLoading(false);
           }
         }
-
+    
         fetchProjects();
       }, []);
+
+    if (loading) {
+        return (
+            <>
+              <h1>Loading...</h1>
+            </>
+          );
+    }
           
     return(
         <>
@@ -49,9 +62,10 @@ export default function ProjectTable() {
                                     <td>
                                         {project.description}
                                     </td>
-                                    <td>
-                                        Sample User
-                                    </td>
+                                    <UsersCell
+                                        projectId={project.id}
+                                        
+                                    />
                                     <td className="d-flex justify-content-center align-items-center projects-more">
                                         <i className="fa-solid fa-ellipsis-vertical project-ellipsis"></i>
                                     </td>

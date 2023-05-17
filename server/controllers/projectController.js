@@ -7,7 +7,7 @@ module.exports = {
     try {
       const { rows } = await client.query("SELECT * FROM projects");
 
-      res.json(rows);
+      res.json(rows)
     } catch (err) {
       console.log("getProject query error: ", err);
       res.status(500).json({ msg: "Unable to get projects from database" });

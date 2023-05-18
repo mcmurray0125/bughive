@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../../utilities/API";
+import { Row } from "reactstrap";
 
 
 export default function UsersCell(props) {
@@ -19,9 +20,9 @@ export default function UsersCell(props) {
           <>
             {projectUsers.map((user) => {
               return (
-                  <td key={user.user_id}>
-                    {user.first_name} {user.last_name}
-                  </td>
+                <Row key={user.user_id}>
+                    <span>{user.first_name} {user.last_name}</span>
+                </Row>
               );
             })}
           </>
@@ -29,8 +30,8 @@ export default function UsersCell(props) {
       }
 
     return(
-        <td>
+        <span>
             No Users Assigned
-        </td>
+        </span>
     )
 }

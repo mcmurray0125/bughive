@@ -1,7 +1,7 @@
 const pool = require("../db");
 
 module.exports = {
-  getAll: async (req, res) => {
+  getAll: async (req, res) => {;
     const client = await pool.connect();
 
     try {
@@ -12,7 +12,7 @@ module.exports = {
       console.log("getProject query error: ", err);
       res.status(500).json({ msg: "Unable to get projects from database" });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   getProject: async (req, res) => {

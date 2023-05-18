@@ -90,6 +90,9 @@
   border: none;
   font-weight: 600;
 }
+.vertical {
+  display: block;
+}
 
 .footer-container {
   margin-top: auto;

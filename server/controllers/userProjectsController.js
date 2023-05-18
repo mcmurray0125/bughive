@@ -2,8 +2,8 @@ const pool = require("../db");
 
 module.exports = {
   addUserToProject: async function (req, res) {
-      const { projectId } = req.params;
-      const { userId } = req.body;
+    const { projectId } = req.params;
+    const { userId } = req.body;
     const client = await pool.connect();
 
     try {
@@ -20,39 +20,55 @@ module.exports = {
     } catch (err) {
       console.log("addUserToProject error: ",err);
       res
-        .status(500)
+        .status(400)
         .json({ msg: `Failed to add user ${userId}to project.` });
+    } finally {
+      client.release();
     }
   },
 
   removeUserFromProject: async function (req, res) {
-      const { projectId } = req.params;
-      const { userId } = req.body;
+    const { projectId, userId } = req.params;
     const client = await pool.connect();
 
     try {
-      const {
-        rows,
-      } = await client.query(
+      await client.query(
         "DELETE FROM user_projects WHERE project_id = $1 AND user_id = $2",
         [projectId, userId]
       );
 
-      res
-        .status(202)
-        .json(`User ${userId} successfully removed from project: ${projectId}`);
+      res.status(202).json(`User removed from project`);
     } catch (err) {
-      console.log("removeUserFromProject error: ",err);
+      console.log("getProject query error: ", err);
       res
         .status(500)
-        .json({ msg: `Failed to remove user ${userId}to project.` });
+        .json({ msg: "Unable to remove user_project from database" });
+    } finally {
+      await client.release();
     }
   },
-
-  getProjectUsers: async function (req, res) {
+  removeAllUsers: async (req, res) => {
     const { projectId } = req.params;
     const client = await pool.connect();
 
+    try {
+      await client.query("DELETE FROM user_projects WHERE project_id = $1", [
+        projectId,
+      ]);
+
+      res.status(202).json(`Project users deleted`);
+    } catch (err) {
+      console.log("getProject query error: ", err);
+      res
+        .status(500)
+        .json({ msg: "Unable to remove user_project from database" });
+    } finally {
+      await client.release();
+    }
+  },
+  getProjectUsers: async function (req, res) {
+    const { projectId } = req.params;
+    const client = await pool.connect();
 
     try {
       const {
@@ -63,12 +79,13 @@ module.exports = {
       );
 
       res.status(201).json(rows);
-      console.log(rows);
     } catch (err) {
       console.log(err);
       res
       .status(500)
-      .json({ msg: "Failed to fetch available users" });
+      .json({ msg: "Failed to fetch available users. Please review query." });
+    } finally {
+      client.release();
     }
   },
 };

@@ -10,14 +10,11 @@ export default function ProjectTable() {
     const [projects, setProjects] = useState([]);
 
     useEffect(() => {
-        console.log("loading");
         async function fetchProjects() {
           try {
             const projectsData = await API.getProjects();
             setProjects(projectsData);
             setLoading(false);
-            console.log(projectsData);
-            console.log("Finished");
           } catch (error) {
             console.log(error);
             setLoading(false);
@@ -30,7 +27,7 @@ export default function ProjectTable() {
     if (loading) {
         return (
             <>
-              <h1>Loading...</h1>
+              <h2>Loading...</h2>
             </>
           );
     }
@@ -56,16 +53,11 @@ export default function ProjectTable() {
                         projects.map((project) => {
                             return(
                                 <tr key={project.id}>
+                                    <td>{project.name}</td>
+                                    <td>{project.description}</td>
                                     <td>
-                                        {project.name}
+                                        <UsersCell projectId={project.id}/>                       
                                     </td>
-                                    <td>
-                                        {project.description}
-                                    </td>
-                                    <UsersCell
-                                        projectId={project.id}
-                                        
-                                    />
                                     <td className="d-flex justify-content-center align-items-center projects-more">
                                         <i className="fa-solid fa-ellipsis-vertical project-ellipsis"></i>
                                     </td>

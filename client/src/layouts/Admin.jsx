@@ -1,5 +1,4 @@
-import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 import logo from "../assets/react.svg"
@@ -7,14 +6,34 @@ import logo from "../assets/react.svg"
 import AdminSidebar from "../components/Sidebars/AdminSidebar";
 import GeneralNavbar from "../components/Navbars/GeneralNavbar";
 import GeneralFooter from "../components/Footers/GeneralFooter";
-import { useAuth } from "../contexts/AuthContext";
 
+import { useAuth } from "../contexts/AuthContext";
 import "../layouts/general.css"
 
 import {routes} from "../routes";
 
 const Admin = (props) => {
   const { isAuthenticated } = useAuth();
+  const location = useLocation();
+
+  const adminRoute = routes.find(route => route.routeName === 'admin');
+  const adminRoutes = adminRoute.children
+
+  const getBrandText = (path) => {
+    console.log(location.pathname)
+    console.log(adminRoutes)
+    const matchingRoute = adminRoutes.find((route) => {
+      const routePath = route.path;
+      return path.includes(routePath);
+    });
+  
+    if (matchingRoute) {
+      return matchingRoute.name;
+    } else {
+      return "Brand";
+    }
+  };
+  
 
   return (
     isAuthenticated?
@@ -32,7 +51,7 @@ const Admin = (props) => {
       <div className="main-content" >
         <GeneralNavbar
           {...props}
-          brandText="Dashboard"
+          brandText={getBrandText(location.pathname)}
         />
         <Outlet/>
         <Container className="footer-container p-3" fluid>

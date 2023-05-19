@@ -3,7 +3,7 @@ import { Table, Button } from "reactstrap"
 
 import UsersCell from "./UsersCell";
 import API from "../../utilities/API";
-
+import "../../assets/css/tables.css"
 
 export default function ProjectTable() {
     const [loading, setLoading] = useState(true);

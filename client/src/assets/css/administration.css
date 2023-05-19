@@ -1,0 +1,9 @@
+.admin-container {
+  display: flex;
+}
+.organization-wrapper {
+  flex: 1;
+}
+.edit-user-wrapper {
+  flex: 1;
+}

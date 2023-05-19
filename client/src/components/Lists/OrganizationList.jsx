@@ -18,7 +18,6 @@ export default function OrganizationList() {
         const fetchOrganization = async () => {
             try {
             const organization = await API.getUsers(abortController);
-            console.log(organization)
             setAllUsers(organization);
             } catch (err) {
             if (!DOMException) {
@@ -34,7 +33,7 @@ export default function OrganizationList() {
     }, []);
 
   return (
-    <Card>
+    <Card className="organization-wrapper">
         <CardHeader>Organization</CardHeader>
         <ListGroup>
             {allUsers.map((user) => {

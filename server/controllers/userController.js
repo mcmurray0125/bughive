@@ -16,7 +16,7 @@ module.exports = {
       console.log("Error getting users from database: ", err);
       res.status(500).json({ msg: "Unable to get users from database" });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   addUser: async (req, res) => {

@@ -20,8 +20,6 @@ const Admin = (props) => {
   const adminRoutes = adminRoute.children
 
   const getBrandText = (path) => {
-    console.log(location.pathname)
-    console.log(adminRoutes)
     const matchingRoute = adminRoutes.find((route) => {
       const routePath = route.path;
       return path.includes(routePath);

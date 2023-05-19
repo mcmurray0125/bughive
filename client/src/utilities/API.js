@@ -55,11 +55,11 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
     
-        return fetch("/api/users", { signal }).then((res) => res.json());
-      },
+        return fetch(`${baseURL}/users/`, { signal }).then((res) => res.json());
+    },
     //Gets All Projects
     getProjects: function() {
-      return fetch("http://localhost:3100/api/projects", {
+      return fetch(`${baseURL}/projects/`, {
         headers: {
           token: localStorage.getItem("token"),
         }
@@ -75,7 +75,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
 
-        return axios.get("api/projects/" + id, {
+        return axios.get(`${baseURL}/projects/` + id, {
             signal,
             headers: {
                 token: localStorage.getItem("token"),
@@ -86,7 +86,7 @@ const API = {
       let signal = null;
       if (abortController) signal = abortController.signal;
   
-      return fetch(`http://localhost:3100/api/userprojects/${projectId}`, {
+      return fetch(`${baseURL}/userprojects/${projectId}`, {
         signal,
         headers: {
           token: localStorage.getItem("token"),

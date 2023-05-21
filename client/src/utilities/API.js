@@ -41,7 +41,16 @@ const API = {
           body: JSON.stringify(email),
         }).then((res) => res.json());
       },
-    
+    updateUser: function (userId, payload) {
+      return fetch(`${baseURL}/users/${userId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          token: localStorage.getItem("token"),
+        },
+        body: JSON.stringify(payload),
+      }).then((res) => res.json());
+    },
     removeUser: function (userId) {
     return fetch(`/api/users/${userId}`, {
         method: "DELETE",
@@ -276,16 +285,6 @@ const API = {
             token: localStorage.getItem("token"),
           },
         });
-      },
-      updateUser: function (userId, payload) {
-        return fetch(`/api/users/${userId}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            token: localStorage.getItem("token"),
-          },
-          body: JSON.stringify(payload),
-        }).then((res) => res.json());
       }
 }
 

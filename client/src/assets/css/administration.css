@@ -3,6 +3,7 @@
 }
 .organization-wrapper {
   flex: 1;
+  max-height: auto !important;
 }
 .edit-user-wrapper {
   flex: 1;

@@ -120,7 +120,7 @@ module.exports = {
       console.log(`Failed to update user ${id}: `, "\n", err);
       res.status(400).json({ msg: "Please review user update query" });
     } finally {
-      await client.release();
+      client.release();
     }
   },
 

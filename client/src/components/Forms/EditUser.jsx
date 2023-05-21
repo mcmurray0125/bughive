@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Card, Form, FormGroup, Label, Input, Button, CardHeader } from "reactstrap"
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 import API from '../../utilities/API';
 
 export default function EditUser({props}) {
@@ -41,7 +43,7 @@ export default function EditUser({props}) {
     };
 
     try {
-      await API.updateUser(selectedUser.id, formattedValues);
+      await API.updateUser(props.selectedUser.id, formattedValues);
 
       toast.success("User information updated", {
         position: "top-right",
@@ -55,7 +57,7 @@ export default function EditUser({props}) {
 
       const organization = await API.getUsers();
       props.setAllUsers(organization);
-      props.setSelectedUser(selectedUser);
+      props.setSelectedUser(props.selectedUser);
     } catch (err) {
       console.log(err);
     }
@@ -124,11 +126,12 @@ export default function EditUser({props}) {
               <option value="developer">Developer</option>
             </Input>
           </FormGroup>
-          <div className='d-flex justify-content-between edit-user-group mb-3'>
-            <Button type='submit' onClick={handleChange} color="success">Submit</Button>
-            <Button type='button' color="danger" size='sm'>Remove User</Button>
+          <div className='d-flex justify-content-between edit-user-group mb-3 align-items-center'>
+            <Button type='submit' onClick={handleSubmit} color="success">Submit</Button>
+            <Button id="remove-user-btn" type='button' color="danger" size='sm'>Remove User</Button>
           </div>
         </Form>
+        <ToastContainer/>
     </Card>
   )
 }

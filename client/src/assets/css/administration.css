@@ -8,3 +8,8 @@
 .edit-user-wrapper {
   flex: 1;
 }
+#remove-user-btn {
+  font-size: 12px;
+  height: 25px !important;
+  line-height: 0;
+}

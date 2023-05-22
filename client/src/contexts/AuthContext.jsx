@@ -9,25 +9,30 @@ export function useAuth() {
 export function AuthProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [role, setRole] = useState("");
+    const [rootPath, setRootPath] = useState("")
 
     let token = localStorage.getItem("token");
 
     useEffect(() => {
       if (token == null) {
-        setIsAuthenticated(false);
+          setIsAuthenticated(false);
+      } else {
+          setRole(localStorage.getItem("role"));
+          setRootPath(role === "admin" ? "/admin" : "/general");
       }
-      setRole(localStorage.getItem("role"))
     }, [token]);
-
+    
     const setAuth = (boolean) => {
       setIsAuthenticated(boolean);
     };
+
 
     const value = {
         isAuthenticated,
         role,
         setAuth,
-        setRole
+        setRole,
+        rootPath
     }
 
   return (

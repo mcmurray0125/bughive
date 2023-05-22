@@ -2,6 +2,7 @@ import {useEffect, useState} from "react";
 import { Table, Button, Media } from "reactstrap"
 import moment from "moment"
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 
 import API from "../../utilities/API";
 import "../../assets/css/tables.css"
@@ -9,6 +10,7 @@ import "../../assets/css/tables.css"
 export default function TicketsTable() {
     const [loading, setLoading] = useState(true);
     const [userTickets, setUserTickets] = useState([{}]);
+    const { rootPath } = useAuth();
 
     useEffect(() => {
         const abortController = new AbortController();
@@ -41,7 +43,7 @@ export default function TicketsTable() {
 
       let navigate = useNavigate()
       const handleLink = (projectId) => {
-        navigate(`/admin/project/${projectId}`);
+        navigate(`${rootPath}/project/${projectId}`);
         //TODO: useContext to navigate to appropriate layout based on user Role. Instead of hardcoding /admin
       };
 

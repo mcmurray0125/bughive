@@ -1,3 +1,7 @@
+li {
+  cursor: pointer;
+}
+
 .admin-container {
   display: flex;
 }

@@ -36,11 +36,35 @@ export default function Administration() {
         };
     }, []);
 
+    //If user clicks outside the admin-container, selectedUser is reset.
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+          const containerElement = document.querySelector(".admin-container");
+          if (
+            containerElement &&
+            !containerElement.contains(event.target)
+          ) {
+            setSelectedUser({
+                id: "",
+                first_name: "",
+                last_name: "",
+                email: "",
+                role: "",
+              });
+          }
+        };
+    
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+          document.removeEventListener("click", handleClickOutside);
+        };
+      }, []);
+
     const props = {allUsers, setAllUsers, selectedUser, setSelectedUser}
     
     return(
         <Container className="admin-container py-2 gap-2" fluid>
-            <OrganizationList props={props} />
+            <OrganizationList props={props}/>
             <EditUser props={props}/>
         </Container>
     )

@@ -1,3 +1,55 @@
-.projects-table td {
+.projects-table td,
+.tickets-table td {
   vertical-align: middle;
+}
+.projects-table a,
+.tickets-table a {
+  text-decoration: none;
+  color: #5932ea;
+}
+.projects-table a:hover,
+.tickets-table a:hover {
+  text-decoration: none;
+  color: #280d87;
+}
+.project-name {
+  min-height: 100% !important;
+  border-bottom: none;
+}
+.ticket-row {
+  cursor: pointer;
+}
+
+/* PROJECTS TABLE */
+.table-wrapper {
+  border-radius: 6px;
+  border: solid 2px #e0e1e4;
+}
+.dashboard-card-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+  padding: 6px;
+}
+.projects-table {
+  background-color: white;
+}
+.projects-more {
+  cursor: pointer;
+}
+.new-project-btn {
+  background-color: #f7f7f7 !important;
+  color: #1a2b88 !important;
+  border-color: transparent !important;
+  border-radius: 10px !important;
+}
+.projects-table th {
+  font-size: 1rem;
+  color: #949494;
+  font-weight: 300;
+}
+.projects-table td {
+  height: 42px;
+  border: none;
+  font-weight: 600;
 }

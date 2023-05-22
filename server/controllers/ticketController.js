@@ -66,6 +66,8 @@ module.exports = {
       res.json(rows);
     } catch (err) {
       console.log("Error fetching user tickets", err);
+    } finally {
+      client.release();
     }
   },
   updateTicket: async (req, res) => {

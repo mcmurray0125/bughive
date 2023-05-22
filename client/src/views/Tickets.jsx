@@ -1,10 +1,11 @@
-import React from "react";
+import { Container } from "reactstrap"
+import TicketsTable from "../components/Tables/TicketsTable"
 
 export default function Tickets() {
     
     return(
-        <div>
-            Tickets Page
-        </div>
+        <Container className="dashboard-container py-2" fluid>
+            <TicketsTable/>
+        </Container>
     )
 }

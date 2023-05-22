@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import { Table, Button } from "reactstrap"
+import { Link } from "react-router-dom"
 
 import UsersCell from "./UsersCell";
 import API from "../../utilities/API";
@@ -37,7 +38,7 @@ export default function ProjectTable() {
         <div className="table-wrapper p-3 bg-white">
             <div className="d-flex justify-content-between align-items-center">
                 <p className="dashboard-card-title">Projects</p>
-                <Button className="dashboard-btn">New Project</Button>
+                <Button className="new-project-btn">New Project</Button>
             </div>
             <Table className="projects-table m-0">
                 <thead>
@@ -53,7 +54,7 @@ export default function ProjectTable() {
                         projects.map((project) => {
                             return(
                                 <tr key={project.id}>
-                                    <td>{project.name}</td>
+                                    <td><Link to={`/admin/project/${project.id}`}>{project.name}</Link></td>
                                     <td>{project.description}</td>
                                     <td>
                                         <UsersCell projectId={project.id}/>                       

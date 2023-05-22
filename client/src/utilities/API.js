@@ -114,7 +114,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
     
-        return fetch("/api/tickets", {
+        return fetch(`${baseURL}/tickets`, {
           signal,
           method: "GET",
           headers: {

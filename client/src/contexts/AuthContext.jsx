@@ -19,8 +19,9 @@ export function AuthProvider({ children }) {
       } else {
           setRole(localStorage.getItem("role"));
           setRootPath(role === "admin" ? "/admin" : "/general");
+          console.log("role set")
       }
-    }, [token]);
+    }, [token, role]);
     
     const setAuth = (boolean) => {
       setIsAuthenticated(boolean);

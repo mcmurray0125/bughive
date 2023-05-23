@@ -80,16 +80,16 @@ const API = {
         });
     },    
     //Get Project by ID
-    getProject: function (id, abortController) {
-        let signal = null;
-        if (abortController) signal = abortController.signal;
-
-        return axios.get(`${baseURL}/projects/` + id, {
-            signal,
-            headers: {
-                token: localStorage.getItem("token"),
-            }
-        });
+    getProject: function (projectId, abortController) {
+      let signal = null;
+      if (abortController) signal = abortController.signal;
+  
+      return fetch(`${baseURL}/projects/${projectId}`, {
+        signal,
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      }).then((res) => res.json());
     },
     getProjectUsers: function (projectId, abortController) {
       let signal = null;
@@ -106,7 +106,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
 
-        return fetch("/api/tickets/" + projectId, { signal }).then((res) =>
+        return fetch(`${baseURL}/tickets/` + projectId, { signal }).then((res) =>
         res.json()
         );
     },

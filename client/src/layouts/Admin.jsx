@@ -20,9 +20,6 @@ const Admin = (props) => {
   const adminRoutes = adminRoute.children
 
   const getBrandText = (path) => {
-    console.log(adminRoutes);
-    console.log(path);
-  
     for (let i = 0; i < adminRoutes.length; i++) {
       if (adminRoutes[i].path.includes(":")) {
         const routePath = adminRoutes[i].path.replace(/\/:[^/]+/, "");
@@ -39,7 +36,7 @@ const Admin = (props) => {
     return "Brand";
   };
   
-  
+
   return (
     isAuthenticated?
     <>

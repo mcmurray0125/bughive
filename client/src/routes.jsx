@@ -82,6 +82,7 @@ const routes = [
       },
       {
         path: "project/:id",
+        name: "Project",
         layout: "admin",
         element: <Project />,
       },

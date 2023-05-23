@@ -1,4 +1,4 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
+import { Navigate, Outlet, useLocation, matchPath } from "react-router-dom";
 // reactstrap components
 import { Container } from "reactstrap";
 import logo from "../assets/react.svg"
@@ -20,19 +20,26 @@ const Admin = (props) => {
   const adminRoutes = adminRoute.children
 
   const getBrandText = (path) => {
-    const matchingRoute = adminRoutes.find((route) => {
-      const routePath = route.path;
-      return path.includes(routePath);
-    });
+    console.log(adminRoutes);
+    console.log(path);
   
-    if (matchingRoute) {
-      return matchingRoute.name;
-    } else {
-      return "Brand";
+    for (let i = 0; i < adminRoutes.length; i++) {
+      if (adminRoutes[i].path.includes(":")) {
+        const routePath = adminRoutes[i].path.replace(/\/:[^/]+/, "");
+        const dynamicSegment = path.match(/\/(\d+)/)?.[1];
+  
+        if (path.includes(routePath) && dynamicSegment) {
+          return adminRoutes[i].name;
+        }
+      } else if (path.includes(adminRoutes[i].path)) {
+        return adminRoutes[i].name;
+      }
     }
+  
+    return "Brand";
   };
   
-
+  
   return (
     isAuthenticated?
     <>

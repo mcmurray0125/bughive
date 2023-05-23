@@ -1,10 +1,10 @@
-import React from "react";
+import { Container } from "reactstrap"
 
 export default function Project() {
     
     return(
-        <div>
-            Projects Page
-        </div>
+        <Container className="dashboard-container py-2" fluid>
+            <h1>Hello World</h1>
+        </Container>
     )
 }

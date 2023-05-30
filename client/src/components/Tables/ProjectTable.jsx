@@ -37,7 +37,7 @@ export default function ProjectTable() {
         <>
         <div className="table-wrapper p-3 bg-white">
             <div className="d-flex justify-content-between align-items-center">
-                <p className="dashboard-card-title">Projects</p>
+                <p className="dashboard-card-title ms-2">Projects</p>
                 <Button className="new-project-btn">New Project</Button>
             </div>
             <Table className="table-1 m-0">

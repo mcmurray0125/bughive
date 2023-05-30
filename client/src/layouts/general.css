@@ -1,4 +1,5 @@
 .sidebar {
+  margin-top: 102px;
   width: 273px;
   height: 100dvh;
   background-color: white;
@@ -20,7 +21,6 @@
 #navbar-main {
   background-color: white;
   height: 102px;
-  border-bottom: 1px solid #e8e8e8;
 }
 
 .nav-item {

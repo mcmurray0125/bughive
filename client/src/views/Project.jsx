@@ -6,6 +6,7 @@ import { Container } from "reactstrap"
 import ProjectTeamTable from "../components/Tables/ProjectTeamTable";
 import ProjectTicketsTable from "../components/Tables/ProjectTicketsTable";
 import SelectedTicket from "../components/Tickets/SelectedTicket";
+import ProjectHeader from "../components/Headers/ProjectHeader";
 
 export default function Project() {
     const projectId = useParams().id;
@@ -49,7 +50,7 @@ export default function Project() {
         async function fetchData() {
           try {
             const projectDataRes = await API.getProject(projectId, abortController);
-            setProjectData(projectDataRes.data);
+            setProjectData(projectDataRes);
     
             const projectTicketsRes = await API.getProjectTickets(
               projectId,
@@ -71,6 +72,7 @@ export default function Project() {
 
     return(
         <Container className="dashboard-container py-2" fluid>
+          <ProjectHeader projectData={projectData}/>
           <div className="project-main-tables gap-2">
             <ProjectTeamTable
               projectTeam={projectTeam}

@@ -59,7 +59,7 @@ export default function TicketsTable() {
         <>
         <div className="table-wrapper p-3 bg-white">
             <div className="d-flex justify-content-between align-items-center">
-                <p className="dashboard-card-title">Tickets</p>
+                <p className="dashboard-card-title ms-1">Tickets</p>
             </div>
             <Table className="table-1 m-0">
                 <thead>

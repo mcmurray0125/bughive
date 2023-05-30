@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 import "../../assets/css/tables.css"
 
-export default function ProjectTicketsTable({projectTickets}) {
+export default function ProjectTicketsTable({projectTickets, setSelectedTicketId}) {
           
     return(
         <>
@@ -28,7 +28,7 @@ export default function ProjectTicketsTable({projectTickets}) {
                     <tbody>
                         {projectTickets.map((ticket) => {
                             return(
-                                <tr key={ticket.id}>
+                                <tr key={ticket.id} onClick={() => setSelectedTicketId(ticket.id)}>
                                     <td>{ticket.title}</td>
                                     <td>{ticket.description}</td>
                                     <td>{ticket.first_name} {ticket.last_name}</td>

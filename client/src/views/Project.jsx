@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import API from "../utilities/API";
-
 import { Container } from "reactstrap"
+
 import ProjectTeamTable from "../components/Tables/ProjectTeamTable";
 import ProjectTicketsTable from "../components/Tables/ProjectTicketsTable";
+import SelectedTicket from "../components/Tickets/SelectedTicket";
 
 export default function Project() {
     const projectId = useParams().id;
@@ -12,6 +13,8 @@ export default function Project() {
     const [projectData, setProjectData] = useState({});
     const [projectTeam, setProjectTeam] = useState([]);
     const [projectTickets, setProjectTickets] = useState([]);
+    const [selectedTicketId, setSelectedTicketId] = useState(null);
+    const [selectedTicket, setSelectedTicket] = useState({});
 
     //Get Project Team
     useEffect(() => {
@@ -75,11 +78,18 @@ export default function Project() {
               projectId={projectId}
             />
             <ProjectTicketsTable
+              projectId={projectId}
               projectTickets={projectTickets}
               setProjectTeam={setProjectTickets}  
-              projectId={projectId}
+              selectedTicket={selectedTicket}
+              setSelectedTicketId={setSelectedTicketId}
             />
           </div>
+          <SelectedTicket
+            selectedTicket={selectedTicket}
+            selectedTicketId={selectedTicketId}
+            setSelectedTicket={setSelectedTicket}
+          />
         </Container>
     )
 }

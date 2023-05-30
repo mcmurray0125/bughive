@@ -167,7 +167,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
     
-        return fetch(`/api/tickets/${projectId}/${ticketId}`, { signal }).then(
+        return fetch(`${baseURL}/tickets/${projectId}/${ticketId}`, { signal }).then(
           (res) => res.json()
         );
       },
@@ -175,7 +175,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
     
-        return fetch(`/api/comments/${ticketId}`, {
+        return fetch(`${baseURL}/comments/${ticketId}`, {
           signal,
           headers: {
             "Content-Type": "application/json",
@@ -187,7 +187,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
     
-        return fetch(`/api/devassignments/${ticketId}`, { signal }).then((res) =>
+        return fetch(`${baseURL}/devassignments/${ticketId}`, { signal }).then((res) =>
           res.json()
         );
       },

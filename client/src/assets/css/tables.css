@@ -1,14 +1,11 @@
-.projects-table td,
-.tickets-table td {
+.table-1 td {
   vertical-align: middle;
 }
-.projects-table a,
-.tickets-table a {
+.table-1 a {
   text-decoration: none;
   color: #5932ea;
 }
-.projects-table a:hover,
-.tickets-table a:hover {
+.table-1 a:hover {
   text-decoration: none;
   color: #280d87;
 }
@@ -24,6 +21,7 @@
 .table-wrapper {
   border-radius: 6px;
   border: solid 2px #e0e1e4;
+  align-self: flex-start;
 }
 .dashboard-card-title {
   font-size: 20px;
@@ -31,7 +29,7 @@
   margin: 0;
   padding: 6px;
 }
-.projects-table {
+.project-table {
   background-color: white;
 }
 .projects-more {
@@ -43,13 +41,19 @@
   border-color: transparent !important;
   border-radius: 10px !important;
 }
-.projects-table th {
+.table-1 th {
   font-size: 1rem;
   color: #949494;
   font-weight: 300;
 }
-.projects-table td {
+.table-1 td {
   height: 42px;
   border: none;
   font-weight: 600;
+}
+.project-team-wrapper {
+  flex: 1;
+}
+.project-tickets-wrapper {
+  flex: 1.5;
 }

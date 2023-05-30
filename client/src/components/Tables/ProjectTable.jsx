@@ -40,7 +40,7 @@ export default function ProjectTable() {
                 <p className="dashboard-card-title">Projects</p>
                 <Button className="new-project-btn">New Project</Button>
             </div>
-            <Table className="projects-table m-0">
+            <Table className="table-1 m-0">
                 <thead>
                     <tr>
                         <th>Project</th>

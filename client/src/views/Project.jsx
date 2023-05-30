@@ -1,6 +1,5 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import "../assets/css/tables.css"
 import API from "../utilities/API";
 
 import { Container } from "reactstrap"
@@ -69,6 +68,7 @@ export default function Project() {
 
     return(
         <Container className="dashboard-container py-2" fluid>
+          <div className="project-main-tables gap-2">
             <ProjectTeamTable
               projectTeam={projectTeam}
               setProjectTeam={setProjectTickets}  
@@ -79,6 +79,7 @@ export default function Project() {
               setProjectTeam={setProjectTickets}  
               projectId={projectId}
             />
+          </div>
         </Container>
     )
 }

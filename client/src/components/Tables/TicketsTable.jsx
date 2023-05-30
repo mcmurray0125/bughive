@@ -61,7 +61,7 @@ export default function TicketsTable() {
             <div className="d-flex justify-content-between align-items-center">
                 <p className="dashboard-card-title">Tickets</p>
             </div>
-            <Table className="tickets-table m-0">
+            <Table className="table-1 m-0">
                 <thead>
                     <tr>
                         <th>Project</th>

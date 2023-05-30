@@ -17,3 +17,7 @@ li {
   height: 25px !important;
   line-height: 0;
 }
+.project-main-tables {
+  display: flex;
+  justify-content: space-between;
+}

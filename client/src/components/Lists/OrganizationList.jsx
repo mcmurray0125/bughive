@@ -5,9 +5,9 @@ import API from "../../utilities/API";
 export default function OrganizationList({props}) {
 
   return (
-    <Card className="organization-wrapper">
+    <Card className="admin-card">
         <CardHeader>Organization</CardHeader>
-        <ListGroup>
+        <ListGroup className="p-3">
             {props.allUsers.map((user) => {
                 return (
                     <ListGroupItem

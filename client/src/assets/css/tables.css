@@ -3,11 +3,11 @@
 }
 .table-1 a {
   text-decoration: none;
-  color: #5932ea;
+  color: var(--link-color);
 }
 .table-1 a:hover {
   text-decoration: none;
-  color: #280d87;
+  color: var(--link-hover);
 }
 .project-name {
   min-height: 100% !important;
@@ -20,8 +20,9 @@
 /* PROJECTS TABLE */
 .table-wrapper {
   border-radius: 6px;
-  border: solid 2px #e0e1e4;
+  border: none;
   align-self: flex-start;
+  box-shadow: var(--shadow-1);
 }
 .dashboard-card-title {
   font-size: 20px;
@@ -43,7 +44,7 @@
 }
 .table-1 th {
   font-size: 1rem;
-  color: #949494;
+  color: var(--table-head);
   font-weight: 300;
 }
 .table-1 td {

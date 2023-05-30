@@ -1,16 +1,17 @@
 li {
   cursor: pointer;
 }
-
+.card {
+  box-shadow: var(--shadow-1);
+  border: none !important;
+}
 .admin-container {
   display: flex;
+  justify-content: space-evenly;
 }
-.organization-wrapper {
-  flex: 1;
-  max-height: auto !important;
-}
-.edit-user-wrapper {
-  flex: 1;
+.admin-card {
+  width: 100%;
+  align-self: flex-start;
 }
 #remove-user-btn {
   font-size: 12px;

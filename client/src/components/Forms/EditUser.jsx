@@ -20,9 +20,9 @@ export default function EditUser({props}) {
 
   if (props.selectedUser.id === "") {
     return (
-      <Card className="edit-user-wrapper">
+      <Card className="admin-card">
           <CardHeader>Edit User Information</CardHeader>
-          <div className='d-flex align-items-center h-100 ps-3'>
+          <div className='d-flex align-items-center h-100 p-3'>
               <h6 className='m-0'>No Dev Selected</h6>
           </div>
       </Card>
@@ -64,7 +64,7 @@ export default function EditUser({props}) {
   };
     
   return (
-    <Card className="edit-user-wrapper">
+    <Card className="admin-card">
         <CardHeader className='mb-2'>Edit User Information</CardHeader>
         <Form className='ps-3 pe-3'>
           <div className='d-flex justify-content-between gap-2'>

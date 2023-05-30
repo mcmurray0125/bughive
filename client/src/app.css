@@ -1,3 +1,10 @@
+:root {
+  --link-color: #5932ea;
+  --link-hover: #280d87;
+  --table-head: #949494;
+  --shadow-1: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+
 body {
   font-family: Nunito Sans, sans-serif;
   -webkit-font-smoothing: antialiased;

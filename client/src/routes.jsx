@@ -13,6 +13,19 @@ import General from "./layouts/General";
 
 const routes = [
   {
+    path: "/",
+    routeName: "auth",
+    element: <Auth />,
+    children: [
+      {
+        path: "login",
+        name: "Login",
+        icon: "ni ni-key-25 text-info",
+        element: <Login />,
+      },
+    ],
+  },
+  {
     path: "/auth/*",
     routeName: "auth",
     element: <Auth />,

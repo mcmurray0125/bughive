@@ -16,7 +16,7 @@ export default function ProjectTicketsTable({projectTickets, setSelectedTicketId
             {projectTickets.length === 0 ? 
                 <p className="m-0 mt-3 ps-2">No Tickets Found</p>
                 :
-                <Table hover className="table-1 m-0">
+                <Table hover className="project-tickets-table table-1 m-0">
                     <thead>
                         <tr>
                             <th>Ticket Title</th>

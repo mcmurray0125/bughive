@@ -60,3 +60,7 @@
 .footer-container {
   margin-top: auto;
 }
+/* Project Page */
+.project-tickets-table {
+  cursor: pointer;
+}

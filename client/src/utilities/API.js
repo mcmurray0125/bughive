@@ -278,7 +278,7 @@ const API = {
         });
       },
       deleteComment: function (ticketId, commentId) {
-        return fetch(`/api/comments/${ticketId}/${commentId}`, {
+        return fetch(`${baseURL}/comments/${ticketId}/${commentId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

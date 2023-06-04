@@ -18,6 +18,8 @@ module.exports = {
     } catch (err) {
       console.log(err);
       res.send(500).json({ msg: "Failed to fetch available users" });
+    } finally {
+      client.release();
     }
   },
 };

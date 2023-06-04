@@ -16,6 +16,9 @@ export default function Project() {
     const [projectTickets, setProjectTickets] = useState([]);
     const [selectedTicketId, setSelectedTicketId] = useState(null);
     const [selectedTicket, setSelectedTicket] = useState({});
+    const [memberModalOpen, setMemberModalOpen] = useState(false);
+
+    const toggleNewMember = () => setMemberModalOpen(!memberModalOpen);
 
     //Get Project Team
     useEffect(() => {
@@ -41,7 +44,7 @@ export default function Project() {
         return () => {
           abortController.abort();
         };
-      }, [projectId]);
+      }, [projectId, memberModalOpen]);
 
       //Get Project Data
       useEffect(() => {
@@ -76,8 +79,11 @@ export default function Project() {
           <div className="project-main-tables gap-2">
             <ProjectTeamTable
               projectTeam={projectTeam}
-              setProjectTeam={setProjectTickets}  
+              setProjectTeam={setProjectTeam}  
               projectId={projectId}
+              memberModalOpen={memberModalOpen}
+              toggleNewMember={toggleNewMember}
+
             />
             <ProjectTicketsTable
               projectId={projectId}

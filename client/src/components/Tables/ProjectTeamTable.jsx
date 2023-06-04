@@ -1,20 +1,26 @@
 import {useEffect, useState} from "react";
-import { Table, Button } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Table, Button, Modal, ModalHeader } from "reactstrap"
+import AddTeamMember from "../Forms/AddTeamMember";
 
-import UsersCell from "./UsersCell";
-import API from "../../utilities/API";
 import "../../assets/css/tables.css"
 
-export default function ProjectTeamTable({projectTeam}) {
+export default function ProjectTeamTable({setProjectTeam, projectTeam, memberModalOpen, toggleNewMember, projectId}) {
           
     return(
         <>
         <div className="table-wrapper project-team-wrapper p-3 bg-white">
             <div className="d-flex justify-content-between align-items-center">
                 <p className="dashboard-card-title">Team</p>
-                <Button className="new-project-btn">New Member</Button>
+                <Button className="new-project-btn" onClick={toggleNewMember}>New Member</Button>
             </div>
+            <Modal  isOpen={memberModalOpen} sz="sm">
+                <ModalHeader toggle={toggleNewMember}>Add Member</ModalHeader>
+                <AddTeamMember
+                    projectId={projectId}
+                    toggle={toggleNewMember}
+                    setProjectTeam={setProjectTeam}
+                />
+            </Modal>
             {projectTeam.length === 0 ? 
                 <p className="m-0 mt-3 ps-2">No Team Members</p>
                 :

@@ -156,7 +156,7 @@ const API = {
         let signal = null;
         if (abortController) signal = abortController.signal;
     
-        return fetch("/api/availableUsers/" + projectId, { signal }).then((res) =>
+        return fetch(`${baseURL}/availableUsers/` + projectId, { signal }).then((res) =>
           res.json()
         );
       },
@@ -240,7 +240,7 @@ const API = {
         });
       },
       addTeamMember: function (projectId, userId) {
-        return fetch("/api/userprojects/" + projectId, {
+        return fetch(`${baseURL}/userprojects/${projectId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

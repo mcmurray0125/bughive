@@ -3,16 +3,16 @@ import API from "../../utilities/API";
 import { Row } from "reactstrap";
 
 
-export default function UsersCell(props) {
+export default function UsersCell({ projectId, selectedProjectId }) {
     const [projectUsers, setProjectUsers] = useState([])
 
     useEffect(() => {
     
-        API.getProjectUsers(props.projectId).then((json) => {
+        API.getProjectUsers(projectId).then((json) => {
             setProjectUsers(json);
         });
     
-      }, [props.projectId]);
+      }, [projectId, selectedProjectId]);
       
     
       if (projectUsers && projectUsers.length) {

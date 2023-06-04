@@ -134,7 +134,7 @@ const API = {
         }).then((res) => res.json());
       },
       updateProject: function (projectId, projectData) {
-        return fetch(`/api/projects/${projectId}`, {
+        return fetch(`${baseURL}/projects/${projectId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -144,7 +144,7 @@ const API = {
         });
       },
       deleteProject: function (projectId) {
-        return fetch(`/api/projects/${projectId}`, {
+        return fetch(`${baseURL}/projects/${projectId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -259,7 +259,7 @@ const API = {
         });
       },
       removeAllTeamMembers: function (projectId) {
-        return fetch(`/api/userprojects/${projectId}`, {
+        return fetch(`${baseURL}/userprojects/${projectId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

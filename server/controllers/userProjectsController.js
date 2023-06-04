@@ -63,7 +63,7 @@ module.exports = {
         .status(500)
         .json({ msg: "Unable to remove user_project from database" });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   getProjectUsers: async function (req, res) {

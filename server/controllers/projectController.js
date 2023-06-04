@@ -31,7 +31,7 @@ module.exports = {
         msg: "Unable to get project from database. Please review query",
       });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   createProject: async (req, res) => {
@@ -52,7 +52,7 @@ module.exports = {
       console.log("createProject query error: ", err);
       res.status(400).json({ msg: "Please review project creation query" });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   deleteProject: async (req, res) => {
@@ -102,7 +102,7 @@ module.exports = {
       console.log("deleteProject query error: ", err);
       res.status(500).json({ msg: `Project deletion of ${projectId} failed` });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   updateProject: async (req, res) => {
@@ -122,7 +122,7 @@ module.exports = {
       console.log("updateProject query error: ", e);
       res.status(400).json({ msg: "Please review project update query" });
     } finally {
-      await client.release();
+      client.release();
     }
   },
 };

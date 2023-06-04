@@ -36,9 +36,6 @@ const AdminSidebar = (props) => {
             <NavLink
               to={prop.path}
               onClick={closeCollapse}
-              className={({ isActive, isPending }) =>
-              isPending ? "pending" : isActive ? "active" : ""
-            }
             >
               <i className={prop.icon} />
               {prop.name}

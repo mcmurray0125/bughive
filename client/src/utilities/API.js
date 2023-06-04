@@ -124,7 +124,7 @@ const API = {
         });
       },
     createProject: function (projectData) {
-        return fetch("/api/projects", {
+        return fetch(`${baseURL}/projects`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

@@ -90,8 +90,8 @@
   margin-right: 1rem;
 }
 .sidebar hr {
-  margin: 0px 12px;
-  border: 1px dashed red;
+  margin: 12px 12px 0px 12px;
+  border: 1px solid var(--table-head);
 }
 .logout-btn {
   width: 100px;
@@ -104,4 +104,7 @@
 /* Project Page */
 .project-tickets-table {
   cursor: pointer;
+}
+.project-tickets-table th {
+  cursor: auto;
 }

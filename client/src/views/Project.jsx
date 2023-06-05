@@ -46,7 +46,7 @@ export default function Project() {
         };
       }, [projectId, memberModalOpen]);
 
-      //Get Project Data
+      //Get Project Data and Project Tickets
       useEffect(() => {
         const abortController = new AbortController();
     
@@ -83,11 +83,12 @@ export default function Project() {
               projectId={projectId}
               memberModalOpen={memberModalOpen}
               toggleNewMember={toggleNewMember}
-
             />
             <ProjectTicketsTable
               projectId={projectId}
               projectTickets={projectTickets}
+              setProjectTickets={setProjectTickets}
+              projectTeam={projectTeam}
               setProjectTeam={setProjectTickets}  
               selectedTicket={selectedTicket}
               setSelectedTicketId={setSelectedTicketId}

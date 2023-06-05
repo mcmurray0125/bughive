@@ -1,18 +1,42 @@
 import {useEffect, useState} from "react";
-import { Table, Button } from "reactstrap"
+import { Table, Button, Modal, ModalHeader } from "reactstrap"
 import { Link } from "react-router-dom"
 
 import "../../assets/css/tables.css"
+import CreateTicket from "../Forms/CreateTicket";
 
-export default function ProjectTicketsTable({projectTickets, setSelectedTicketId}) {
-          
+export default function ProjectTicketsTable
+    ({   
+        projectTickets,
+        setSelectedTicketId,
+        projectId,
+        projectTeam
+    })
+    {
+
+    const [showNewTicketModal, setShowNewTicketModal] = useState(false);
+    const toggleNewTicket = () => setShowNewTicketModal(!showNewTicketModal);
+
     return(
         <>
         <div className="table-wrapper project-tickets-wrapper p-3 bg-white">
             <div className="d-flex justify-content-between align-items-center">
                 <p className="dashboard-card-title">Tickets</p>
-                <Button className="new-project-btn">New Ticket</Button>
+                <Button
+                className="new-project-btn"
+                onClick={toggleNewTicket}
+                >
+                    New Ticket
+                </Button>
             </div>
+            <Modal  isOpen={showNewTicketModal} sz="sm">
+                <ModalHeader toggle={toggleNewTicket}>Create a New Ticket</ModalHeader>
+                <CreateTicket
+                    team={projectTeam}
+                    projectId={projectId}
+                    toggle={toggleNewTicket}
+                />
+            </Modal>
             {projectTickets.length === 0 ? 
                 <p className="m-0 mt-3 ps-2">No Tickets Found</p>
                 :

@@ -28,7 +28,7 @@ module.exports = {
       console.log(`Failed to create ticket for ${title}: `, "\n", err);
       res.status(500).json({ msg: `Please review query` });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   getProjectTickets: async (req, res) => {
@@ -50,7 +50,7 @@ module.exports = {
       );
       res.status(500).json({ msg: `Please review query` });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   getUserTickets: async (req, res) => {

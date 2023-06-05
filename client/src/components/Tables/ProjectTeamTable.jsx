@@ -1,11 +1,27 @@
-import {useEffect, useState} from "react";
-import { Table, Button, Modal, ModalHeader } from "reactstrap"
+import API from "../../utilities/API";
 import AddTeamMember from "../Forms/AddTeamMember";
+import {
+    Table,
+    Button,
+    Modal,
+    ModalHeader,
+    DropdownMenu,
+    DropdownItem,
+    UncontrolledDropdown,
+    DropdownToggle
+} from "reactstrap"
 
 import "../../assets/css/tables.css"
 
 export default function ProjectTeamTable({setProjectTeam, projectTeam, memberModalOpen, toggleNewMember, projectId}) {
           
+    const removeTeamMember = async (projectId, userId) => {
+        await API.removeTeamMember(projectId, userId);
+
+        const projectTeamRes = await API.getProjectUsers(projectId);
+        setProjectTeam(projectTeamRes);
+    };
+
     return(
         <>
         <div className="table-wrapper project-team-wrapper p-3 bg-white">
@@ -34,19 +50,37 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
                         </tr>
                     </thead>
                     <tbody>
-                        {projectTeam.map((member) => {
-                            return(
-                                <tr key={member.user_id}>
-                                    <td>{member.first_name} {member.last_name}</td>
-                                    <td>{member.email}</td>
-                                    <td>{member.role}</td>
-                                    <td className="d-flex justify-content-center align-items-center projects-more">
-                                        <i className="fa-solid fa-ellipsis-vertical project-ellipsis"></i>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                        }
+                    {projectTeam.map((member) => {
+                        return(
+                            <tr key={member.user_id}>
+                                <td>{member.first_name} {member.last_name}</td>
+                                <td>{member.email}</td>
+                                <td>{member.role}</td>
+                                <td className="d-flex justify-content-center align-items-center projects-more">
+                                    <UncontrolledDropdown>
+                                        <DropdownToggle
+                                            role="button"
+                                            size="sm"
+                                            color=""
+                                            onClick={(e) => e.preventDefault()}
+                                        >
+                                            <i className="fa-solid fa-ellipsis-vertical project-ellipsis"/>
+                                        </DropdownToggle>
+                                        <DropdownMenu className="dropdown-menu-arrow" end>
+                                            <DropdownItem
+                                                onClick={() =>
+                                                removeTeamMember(projectId, member.user_id)
+                                                }
+                                            >
+                                                Remove Team Member
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
+                                </td>
+                            </tr>
+                        )
+                    })
+                    }
                     </tbody>
                 </Table>
             }

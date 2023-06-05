@@ -20,7 +20,7 @@ const API = {
   },
   
   addUser: function (userData) {
-      return fetch(`/api/users`, {
+      return fetch(`${baseURL}/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -30,10 +30,10 @@ const API = {
     },
 
     saveUser: function (userData) {
-    return axios.post("/api/users", userData);
+    return axios.post(`${baseURL}/users`, userData);
     },
     lookupUserByEmail: function (email) {
-        return fetch(`/api/auth/user/`, {
+        return fetch(`${baseURL}/auth/user/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const API = {
       }).then((res) => res.json());
     },
     removeUser: function (userId) {
-    return fetch(`/api/users/${userId}`, {
+    return fetch(`${baseURL}/users/${userId}`, {
         method: "DELETE",
         headers: {
         "Content-Type": "application/json",
@@ -161,7 +161,7 @@ const API = {
         );
       },
       addContact: function (id, data) {
-        return axios.put("/api/users/" + id, data);
+        return axios.put(`${baseURL}/users/` + id, data);
       },
       getTicket: function (projectId, ticketId, abortController) {
         let signal = null;
@@ -192,7 +192,7 @@ const API = {
         );
       },
       createDevAssignment: function (ticketId, devId) {
-        return fetch(`/api/devassignments/${ticketId}`, {
+        return fetch(`${baseURL}/devassignments/${ticketId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -202,7 +202,7 @@ const API = {
         }).then((res) => res.json());
       },
       removeAllDevAssignments: function (ticketId) {
-        return fetch(`/api/devassignments/${ticketId}`, {
+        return fetch(`${baseURL}/devassignments/${ticketId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -211,7 +211,7 @@ const API = {
         });
       },
       createTicket: function (projectId, payload) {
-        return fetch(`/api/tickets/${projectId}`, {
+        return fetch(`${baseURL}/tickets/${projectId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -221,7 +221,7 @@ const API = {
         }).then((res) => res.json());
       },
       updateTicket: function (projectId, ticketId, payload) {
-        return fetch(`/api/tickets/${projectId}/${ticketId}`, {
+        return fetch(`${baseURL}/tickets/${projectId}/${ticketId}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -231,7 +231,7 @@ const API = {
         }).then((res) => res.json());
       },
       deleteTicket: function (projectId, ticketId) {
-        return fetch(`/api/tickets/${projectId}/${ticketId}`, {
+        return fetch(`${baseURL}/tickets/${projectId}/${ticketId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -250,7 +250,7 @@ const API = {
         });
       },
       removeTeamMember: function (projectId, userId) {
-        return fetch(`/api/userprojects/${projectId}/${userId}`, {
+        return fetch(`${baseURL}/userprojects/${projectId}/${userId}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
@@ -268,7 +268,7 @@ const API = {
         });
       },
       createComment: function (ticketId, comment) {
-        return fetch(`/api/comments/${ticketId}`, {
+        return fetch(`${baseURL}/comments/${ticketId}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

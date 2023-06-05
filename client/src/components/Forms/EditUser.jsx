@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Card, Form, FormGroup, Label, Input, Button, CardHeader } from "reactstrap"
 import { ToastContainer, toast } from "react-toastify"
-import 'react-toastify/dist/ReactToastify.css';
 import API from '../../utilities/API';
 
 export default function EditUser({props}) {

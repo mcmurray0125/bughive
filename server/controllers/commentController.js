@@ -18,7 +18,7 @@ module.exports = {
       console.log(`Failed to create message for ${ticketId}: `, "\n", err);
       res.status(500).json({ msg: `Please review query` });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   getTicketComments: async (req, res) => {
@@ -57,7 +57,7 @@ module.exports = {
       console.log(`Failed to update comment: `, "\n", err);
       res.status(500).json({ msg: `Please review query` });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   deleteComment: async (req, res) => {

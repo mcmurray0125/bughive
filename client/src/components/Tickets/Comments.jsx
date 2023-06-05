@@ -99,7 +99,7 @@ export default function Comments({ selectedTicket, selectedTicketId, projectId})
         <CardHeader className="bg-white">
             <h4 className="m-0">Comments</h4>
         </CardHeader>
-        {comments.length === 0 ? <h6>No Comments</h6> :
+        {comments.length === 0 ? <h5 className="ms-3 mt-3">No Comments</h5> :
         comments.map((comment) => {
             return (
               <CommentCard

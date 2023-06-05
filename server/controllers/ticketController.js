@@ -95,7 +95,7 @@ module.exports = {
       console.log(`Failed to update ticket: `, "\n", err);
       res.status(500).json({ msg: `Please review query` });
     } finally {
-      await client.release();
+      client.release();
     }
   },
   deleteTicket: async (req, res) => {

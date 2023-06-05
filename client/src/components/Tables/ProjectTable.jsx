@@ -126,10 +126,11 @@ export default function ProjectTable() {
                                     <td>
                                         <UncontrolledDropdown className="d-flex justify-content-center align-items-center projects-more">
                                             <DropdownToggle
+                                                role="button"
                                                 id={project.id}
                                                 onClick={(e) => selectProject(e)}
                                             >
-                                                <i className="fa-solid fa-ellipsis-vertical project-ellipsis"></i>
+                                                <i className="fa-solid fa-ellipsis-vertical project-ellipsis"/>
                                             </DropdownToggle>
                                             <DropdownMenu>
                                                 <DropdownItem id={project.id} onClick={toggleEditProject}>

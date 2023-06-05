@@ -1,21 +1,38 @@
 import {useEffect, useState} from "react";
-import { Table, Button, Modal, ModalHeader } from "reactstrap"
-import { Link } from "react-router-dom"
+import { Table, Button, Modal, ModalHeader, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
+import API from "../../utilities/API";
 
 import "../../assets/css/tables.css"
 import CreateTicket from "../Forms/CreateTicket";
+import EditTicket from "../Forms/EditTicket";
 
 export default function ProjectTicketsTable
     ({   
         projectTickets,
+        setProjectTickets,
         setSelectedTicketId,
+        selectedTicket,
+        setSelectedTicket,
         projectId,
-        projectTeam
+        projectTeam,
+        assignedDevs
     })
     {
 
     const [showNewTicketModal, setShowNewTicketModal] = useState(false);
+    const [showEditTicketModal, setShowEditTicketModal] = useState(false);
+
+    const toggleEditTicket = () => setShowEditTicketModal(!showEditTicketModal);
     const toggleNewTicket = () => setShowNewTicketModal(!showNewTicketModal);
+
+    const deleteTicket = async (ticketId) => {
+        await API.deleteTicket(projectId, ticketId);
+        setSelectedTicketId(null)
+        setSelectedTicket({})
+    
+        const projectTicketsRes = await API.getProjectTickets(projectId);
+        setProjectTickets(projectTicketsRes);
+      };
 
     return(
         <>
@@ -35,6 +52,7 @@ export default function ProjectTicketsTable
                     team={projectTeam}
                     projectId={projectId}
                     toggle={toggleNewTicket}
+                    setProjectTickets={setProjectTickets}
                 />
             </Modal>
             {projectTickets.length === 0 ? 
@@ -57,12 +75,48 @@ export default function ProjectTicketsTable
                                     <td>{ticket.description}</td>
                                     <td>{ticket.first_name} {ticket.last_name}</td>
                                     <td className="d-flex justify-content-center align-items-center projects-more">
-                                        <i className="fa-solid fa-ellipsis-vertical project-ellipsis"></i>
+                                    <UncontrolledDropdown>
+                                        <DropdownToggle
+                                            className="btn-icon-only"
+                                            role="button"
+                                            size="sm"
+                                            color=""
+                                            onClick={() => {
+                                                setSelectedTicketId(ticket.id);
+                                            }}
+                                        >
+                                        <i className="fa-solid fa-ellipsis-vertical project-ellipsis"/>
+                                        </DropdownToggle>
+                                        <DropdownMenu className="dropdown-menu-arrow" end>
+                                            <DropdownItem onClick={toggleEditTicket}>
+                                                Edit Ticket
+                                            </DropdownItem>
+
+                                            <DropdownItem
+                                                onClick={() => {
+                                                deleteTicket(ticket.id);
+                                                }}
+                                            >
+                                                Remove Ticket
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </UncontrolledDropdown>
                                     </td>
                                 </tr>
                             )
                         })
                         }
+
+                        <Modal isOpen={showEditTicketModal} toggle={toggleEditTicket}>
+                            <ModalHeader toggle={toggleEditTicket}>Edit Ticket</ModalHeader>
+                            <EditTicket
+                                team={projectTeam}
+                                ticketData={selectedTicket}
+                                toggle={toggleEditTicket}
+                                setProjectTickets={setProjectTickets}
+                                assignedDevs={assignedDevs}
+                            />
+                        </Modal>
                     </tbody>
                 </Table>
             }

@@ -3,42 +3,8 @@ import { Card, CardHeader, List, ListGroupItem, Badge, Row, Col } from 'reactstr
 import API from '../../utilities/API';
 import Comments from './Comments';
 
-export default function SelectedTicket({projectId, selectedTicket, selectedTicketId, setSelectedTicket}) {
-    const [assignedDevs, setAssignedDevs] = useState([]);
+export default function SelectedTicket({projectId, selectedTicket, selectedTicketId, setSelectedTicket, assignedDevs}) {
 
-    useEffect(() => {
-        const abortController = new AbortController();
-    
-        async function fetchTicket() {
-          try {
-            if (selectedTicketId) {
-              const ticket = await API.getTicket(
-                projectId,
-                selectedTicketId,
-                abortController
-              );
-              setSelectedTicket(ticket);
-
-              //Get users assigned to the ticket.
-              const assignedDevs = await API.getDevAssignments(
-                selectedTicketId,
-                abortController
-              );
-              setAssignedDevs(assignedDevs);
-            }
-          } catch (err) {
-            if (!abortController.signal.aborted) {
-              console.log(`Error requesting project data: ${err}`);
-            }
-          }
-        }
-    
-        fetchTicket();
-    
-        return () => {
-          abortController.abort();
-        };
-      }, [selectedTicketId, projectId]);
 
       return (
         <Card className='mt-4'>

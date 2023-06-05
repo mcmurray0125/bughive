@@ -17,6 +17,7 @@ export default function Project() {
     const [selectedTicketId, setSelectedTicketId] = useState(null);
     const [selectedTicket, setSelectedTicket] = useState({});
     const [memberModalOpen, setMemberModalOpen] = useState(false);
+    const [assignedDevs, setAssignedDevs] = useState([]);
 
     const toggleNewMember = () => setMemberModalOpen(!memberModalOpen);
 
@@ -72,6 +73,40 @@ export default function Project() {
         };
       }, [projectId]);
 
+      useEffect(() => {
+        const abortController = new AbortController();
+    
+        async function fetchTicket() {
+          try {
+            if (selectedTicketId) {
+              const ticket = await API.getTicket(
+                projectId,
+                selectedTicketId,
+                abortController
+              );
+              setSelectedTicket(ticket);
+
+              //Get users assigned to the ticket.
+              const assignedDevs = await API.getDevAssignments(
+                selectedTicketId,
+                abortController
+              );
+              setAssignedDevs(assignedDevs);
+            }
+          } catch (err) {
+            if (!abortController.signal.aborted) {
+              console.log(`Error requesting project data: ${err}`);
+            }
+          }
+        }
+    
+        fetchTicket();
+    
+        return () => {
+          abortController.abort();
+        };
+      }, [selectedTicketId, projectId]);
+
 
     return(
         <Container className="dashboard-container py-2" fluid>
@@ -91,13 +126,16 @@ export default function Project() {
               projectTeam={projectTeam}
               setProjectTeam={setProjectTickets}  
               selectedTicket={selectedTicket}
+              setSelectedTicket={setSelectedTicket}
               setSelectedTicketId={setSelectedTicketId}
+              assignedDevs={assignedDevs}
             />
           </div>
           <SelectedTicket
             selectedTicket={selectedTicket}
             selectedTicketId={selectedTicketId}
             setSelectedTicket={setSelectedTicket}
+            assignedDevs={assignedDevs}
           />
         </Container>
     )

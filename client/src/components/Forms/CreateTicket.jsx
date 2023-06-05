@@ -28,34 +28,40 @@ export default function CreateTicket({ toggle, setProjectTickets, team }) {
 
     async function submit() {
       if (isSubmitting === true) return;
-  
+    
       setIsSubmitting(true);
-  
+    
       const { assignees } = values;
-  
-      const { id } = await API.createTicket(projectId, values);
-  
-      for (let i = 0; i < assignees.length; i++) {
-        const devId = { devId: assignees[i] };
-        await API.createDevAssignment(id, devId);
+    
+      try {
+        const { id } = await API.createTicket(projectId, values);
+    
+        for (let i = 0; i < assignees.length; i++) {
+          const devId = { devId: assignees[i] };
+          await API.createDevAssignment(id, devId);
+        }
+    
+        const projectTicketsRes = await API.getProjectTickets(projectId);
+    
+        setProjectTickets(projectTicketsRes);
+    
+        values.title = "";
+        values.description = "";
+        values.assignees = [];
+        values.priority = "low";
+        values.type = "issue";
+        values.status = "new";
+        values.timeEstimate = 0;
+    
+        toggle();
+      } catch (error) {
+        // Handle error here
+        console.error("Error submitting ticket:", error);
+      } finally {
+        setIsSubmitting(false);
       }
-  
-      const projectTicketsRes = await API.getProjectTickets(projectId);
-  
-      setProjectTickets(projectTicketsRes);
-  
-      values.title = "";
-      values.description = "";
-      values.assignees = [];
-      values.priority = "low";
-      values.type = "issue";
-      values.status = "new";
-      values.timeEstimate = 0;
-  
-      toggle();
-  
-      setIsSubmitting(false);
     }
+    
 
   return (
     <Container className="p-2">

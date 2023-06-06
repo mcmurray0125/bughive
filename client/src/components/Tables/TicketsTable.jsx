@@ -63,7 +63,7 @@ export default function TicketsTable() {
             </div>
           </CardHeader>
           <CardBody className="p-3">
-            <Table striped className="table-1 m-0">
+            <Table striped responsive className="table-1 m-0">
                 <thead>
                     <tr>
                         <th>Project</th>

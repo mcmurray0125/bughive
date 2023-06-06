@@ -204,3 +204,8 @@
     font-size: 14px;
   }
 }
+@media (max-width: 650px) {
+  .admin-container {
+    flex-direction: column;
+  }
+}

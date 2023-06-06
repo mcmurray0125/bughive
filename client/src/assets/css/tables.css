@@ -1,3 +1,6 @@
+.table-responsive {
+  border-radius: 6px !important;
+}
 .table-1 td {
   vertical-align: middle;
 }
@@ -15,6 +18,9 @@
 }
 .ticket-row {
   cursor: pointer;
+}
+tbody tr:hover {
+  background-color: #e2ddef;
 }
 
 /* PROJECTS TABLE */

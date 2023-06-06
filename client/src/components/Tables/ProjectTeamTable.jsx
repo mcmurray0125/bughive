@@ -46,7 +46,7 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
             {projectTeam.length === 0 ? 
                 <p className="m-0 mt-3 ps-2">No Team Members</p>
                 :
-                <Table className="table-1 project-team-table m-0">
+                <Table responsive className="table-1 project-team-table m-0">
                     <thead>
                         <tr>
                             <th>Name</th>

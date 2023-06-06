@@ -74,7 +74,7 @@ export default function EditProject({ toggle, selectedProjectData, selectedProje
     }, []);
 
   return (
-    <Container className="p-2">
+    <Container className="p-3">
         <Form onSubmit={submit}>
             <FormGroup>
                 <Label htmlFor="name">Project Name</Label>

@@ -17,17 +17,6 @@ export default function EditUser({props}) {
     setValues({ ...values, [name]: value });
   };
 
-  if (props.selectedUser.id === "") {
-    return (
-      <Card className="admin-card">
-          <CardHeader className='h5'>Edit User Information</CardHeader>
-          <div className='d-flex align-items-center h-100 p-3'>
-              <h6 className='m-0'>No Dev Selected</h6>
-          </div>
-      </Card>
-    )
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -61,6 +50,17 @@ export default function EditUser({props}) {
       console.log(err);
     }
   };
+
+  if (props.selectedUser.id === "") {
+    return (
+      <Card className="admin-card">
+          <CardHeader className='dashboard-card-title'>Edit User Information</CardHeader>
+          <div className='d-flex align-items-center h-100 p-3'>
+              <h6 className='m-0'>No Dev Selected</h6>
+          </div>
+      </Card>
+    )
+  }
     
   return (
     <Card className="admin-card">

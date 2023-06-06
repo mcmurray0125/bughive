@@ -15,7 +15,7 @@ export default function SelectedTicket({projectId, selectedTicket, selectedTicke
             <p className='m-3'>No Ticket Selected</p>
           ) : (
             <Row>
-              <Col className='mt-3 p-0 px-4'>
+              <Col className='my-3 p-0 px-4'>
                 <Card className='p-3'>
                   <Row className='selected-ticket-info mb-4'>
                     <Col md="3">

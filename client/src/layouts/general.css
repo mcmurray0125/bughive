@@ -34,14 +34,30 @@
 
 /* SIDEBAR */
 /* Dynamic Styles in react Sidebar Components  */
+.sidebar button,
+.sidebar .logo,
+.sidebar .nav-item {
+  z-index: 2 !important;
+}
 .sidebar {
   width: 273px;
   height: 100dvh;
-  background-color: var(--light-text);
+  background-color: white;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   position: relative;
   color: rgba(131, 119, 143, 0.5);
+  z-index: 1;
+}
+.sidebar::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: var(--card-header);
+  background-image: url("https://www.transparenttextures.com/patterns/light-honeycomb.png");
+  filter: brightness(1.25);
+  pointer-events: none;
 }
 .toggle {
   background-color: #3025534f;
@@ -141,6 +157,7 @@
 }
 .card-header {
   background-color: var(--card-header) !important;
+  background-image: url("https://www.transparenttextures.com/patterns/quilt.png");
 }
 
 /* Project Page */

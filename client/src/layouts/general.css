@@ -21,6 +21,7 @@
     rgb(132, 100, 249)
   );
   height: 102px;
+  color: var(--light-text) !important;
 }
 #navbar-main::after {
   content: "";
@@ -29,11 +30,6 @@
   top: 100%;
   width: 100%;
   height: 150px;
-}
-
-#navbar-main h2,
-.project-header {
-  color: var(--light-text);
 }
 
 /* SIDEBAR */
@@ -130,19 +126,11 @@
 .footer-container {
   margin-top: auto;
 }
-/* Project Page */
-.project-tickets-table {
-  cursor: pointer;
-}
-.project-tickets-table th {
-  cursor: auto;
-}
 
 /* Cards */
 .dashboard-card-title,
-.card-header,
-h5 {
-  color: var(--dark-text) !important;
+.card-header {
+  color: var(--dark-text);
 }
 .card {
   border-radius: 6px !important;
@@ -153,6 +141,22 @@ h5 {
 }
 .card-header {
   background-color: var(--card-header) !important;
+}
+
+/* Project Page */
+.project-tickets-table {
+  cursor: pointer;
+}
+.project-tickets-table th {
+  cursor: auto;
+}
+.project-header {
+  color: var(--light-text) !important;
+  background-color: #21212127;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  box-shadow: 0 20px 10px -20px rgba(0, 0, 0, 0.45) inset,
+    20px 0 10px -20px rgba(0, 0, 0, 0.45) inset;
 }
 
 /* Media Queries */

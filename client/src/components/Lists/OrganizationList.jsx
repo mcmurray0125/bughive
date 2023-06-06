@@ -6,7 +6,7 @@ export default function OrganizationList({props}) {
 
   return (
     <Card className="admin-card">
-        <CardHeader>Organization</CardHeader>
+        <CardHeader className="h5">Organization</CardHeader>
         <ListGroup className="p-3">
             {props.allUsers.map((user) => {
                 return (

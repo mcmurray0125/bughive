@@ -1,9 +1,15 @@
 :root {
   --light-text: #f1f1f1;
+  --dark-text: #23194a;
   --link-color: #5932ea;
   --link-hover: #280d87;
-  --table-head: #949494;
+  --table-head: #505050;
+  --bg-color: #e8e8e8;
   --shadow-1: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+
+  --card-header: #e0dde988;
+
+  --accent-color: #b532ea;
 }
 
 body {
@@ -12,5 +18,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   height: 100dvh;
-  overflow: hidden;
+  background-color: #e8e8e8;
+  background-image: url("https://www.transparenttextures.com/patterns/billie-holiday.png");
 }

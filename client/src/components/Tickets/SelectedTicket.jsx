@@ -9,7 +9,7 @@ export default function SelectedTicket({projectId, selectedTicket, selectedTicke
       return (
         <Card className='mt-4'>
           <CardHeader>
-            <h5 className='m-0'>Selected Ticket Info</h5>
+            <h5 className='m-0 fw-bold'>Selected Ticket Info</h5>
           </CardHeader>
           {Object.keys(selectedTicket).length === 0 ? (
             <p className='m-3'>No Ticket Selected</p>

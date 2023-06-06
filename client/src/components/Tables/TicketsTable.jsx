@@ -80,7 +80,7 @@ export default function TicketsTable() {
                                 onClick={() => handleLink(ticket.project_id)}
                                 className="ticket-row"
                             >
-                                <td className="fw-bold">
+                                <td >
                                     {ticket.project_name}
                                 </td>
                                 <td>{ticket.title}</td>

@@ -77,7 +77,6 @@ export default function ProjectTicketsTable
                                     <td className="d-flex justify-content-center align-items-center projects-more">
                                     <UncontrolledDropdown>
                                         <DropdownToggle
-                                            className="btn-icon-only"
                                             role="button"
                                             size="sm"
                                             color=""

@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { Table } from "reactstrap"
+import { Table, Card, CardHeader, CardBody } from "reactstrap"
 import moment from "moment"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -56,12 +56,14 @@ export default function TicketsTable() {
     }
           
     return(
-        <>
-        <div className="table-wrapper p-3 bg-white">
+        <Card className="table-wrapper bg-white">
+          <CardHeader>
             <div className="d-flex justify-content-between align-items-center">
                 <p className="dashboard-card-title ms-1">Tickets</p>
             </div>
-            <Table className="table-1 m-0">
+          </CardHeader>
+          <CardBody className="p-3">
+            <Table striped className="table-1 m-0">
                 <thead>
                     <tr>
                         <th>Project</th>
@@ -93,7 +95,7 @@ export default function TicketsTable() {
                     }
                 </tbody>
             </Table>
-        </div>
-        </>
+          </CardBody>
+        </Card>
     )
 }

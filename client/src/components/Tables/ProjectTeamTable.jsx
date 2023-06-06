@@ -8,12 +8,15 @@ import {
     DropdownMenu,
     DropdownItem,
     UncontrolledDropdown,
-    DropdownToggle
+    DropdownToggle,
+    Card,
+    CardHeader,
+    CardBody
 } from "reactstrap"
 
 import "../../assets/css/tables.css"
 
-export default function ProjectTeamTable({setProjectTeam, projectTeam, memberModalOpen, toggleNewMember, projectId}) {
+export default function ProjectTeamTable({setProjectTeam, projectTeam, memberModalOpen, toggleNewMember, projectId, projectData}) {
           
     const removeTeamMember = async (projectId, userId) => {
         await API.removeTeamMember(projectId, userId);
@@ -24,9 +27,10 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
 
     return(
         <>
-        <div className="table-wrapper project-team-wrapper p-3 bg-white">
+        <Card className="table-wrapper">
+            <CardHeader>
             <div className="d-flex justify-content-between align-items-center">
-                <p className="dashboard-card-title">Team</p>
+                <h5 className="dashboard-card-title">Team</h5>
                 <Button className="new-project-btn" onClick={toggleNewMember}>New Member</Button>
             </div>
             <Modal  isOpen={memberModalOpen} sz="sm">
@@ -37,6 +41,8 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
                     setProjectTeam={setProjectTeam}
                 />
             </Modal>
+            </CardHeader>
+            <CardBody className="p-2">
             {projectTeam.length === 0 ? 
                 <p className="m-0 mt-3 ps-2">No Team Members</p>
                 :
@@ -72,7 +78,7 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
                                                 removeTeamMember(projectId, member.user_id)
                                                 }
                                             >
-                                                Remove Team Member
+                                                {`Remove ${member.first_name} from ${projectData.name}`}
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </UncontrolledDropdown>
@@ -84,7 +90,9 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
                     </tbody>
                 </Table>
             }
-        </div>
+
+            </CardBody>
+        </Card>
         </>
     )
 }

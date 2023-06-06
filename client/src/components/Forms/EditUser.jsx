@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, Form, FormGroup, Label, Input, Button, CardHeader } from "reactstrap"
+import { Card, Form, FormGroup, Label, Input, Button, CardHeader, CardBody } from "reactstrap"
 import { ToastContainer, toast } from "react-toastify"
 import API from '../../utilities/API';
 
@@ -64,72 +64,76 @@ export default function EditUser({props}) {
     
   return (
     <Card className="admin-card">
-        <CardHeader className='h5 mb-2'>Edit User Information</CardHeader>
-        <Form className='ps-3 pe-3'>
-          <div className='d-flex justify-content-between gap-2'>
-            <FormGroup className='w-100'>
-              <Label for="first_name" className="text-muted">
-                First Name
-              </Label>
-              <Input
-                type="text"
-                name="first_name"
-                id="first_name"
-                value={values.first_name}
-                onChange={handleChange}
-              />
-            </FormGroup>
-            <FormGroup className='w-100'>
-              <Label for="last_name" className="text-muted">
+        <CardHeader >
+          <p className='dashboard-card-title'>Edit User Information</p>
+        </CardHeader>
+        <CardBody className='p-2'>
+          <Form className='ps-3 pe-3'>
+            <div className='d-flex justify-content-between gap-2'>
+              <FormGroup className='w-100'>
+                <Label for="first_name" className="text-muted">
+                  First Name
+                </Label>
+                <Input
+                  type="text"
+                  name="first_name"
+                  id="first_name"
+                  value={values.first_name}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+              <FormGroup className='w-100'>
+                <Label for="last_name" className="text-muted">
+                  Last Name
+                </Label>
+                <Input
+                  type="text"
+                  name="last_name"
+                  id="last_name"
+                  value={values.last_name}
+                  onChange={handleChange}
+                />
+              </FormGroup>
+            </div>
+            <FormGroup >
+              <Label for="email" className="text-muted">
                 Last Name
               </Label>
               <Input
                 type="text"
-                name="last_name"
-                id="last_name"
-                value={values.last_name}
+                name="email"
+                id="email"
+                value={values.email}
                 onChange={handleChange}
               />
             </FormGroup>
-          </div>
-          <FormGroup >
-            <Label for="email" className="text-muted">
-              Last Name
-            </Label>
-            <Input
-              type="text"
-              name="email"
-              id="email"
-              value={values.email}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <FormGroup >
-            <Label
-              for="role"
-              className="text-muted"
-            >
-              Authorization Level
-            </Label>
-            <Input
-              type="select"
-              name="role"
-              id="role"
-              value={values.role}
-              onChange={handleChange}
-            >
-              <option value="admin">Admin</option>
-              <option value="project manager">
-                Project Manager
-              </option>
-              <option value="developer">Developer</option>
-            </Input>
-          </FormGroup>
-          <div className='d-flex justify-content-between edit-user-group mb-3 align-items-center'>
-            <Button type='submit' onClick={handleSubmit} color="success">Submit</Button>
-            <Button id="remove-user-btn" type='button' color="danger" size='sm'>Remove User</Button>
-          </div>
-        </Form>
+            <FormGroup >
+              <Label
+                for="role"
+                className="text-muted"
+              >
+                Authorization Level
+              </Label>
+              <Input
+                type="select"
+                name="role"
+                id="role"
+                value={values.role}
+                onChange={handleChange}
+              >
+                <option value="admin">Admin</option>
+                <option value="project manager">
+                  Project Manager
+                </option>
+                <option value="developer">Developer</option>
+              </Input>
+            </FormGroup>
+            <div className='d-flex justify-content-between edit-user-group mb-3 align-items-center'>
+              <Button type='submit' onClick={handleSubmit} color="success">Submit</Button>
+              <Button id="remove-user-btn" type='button' color="danger" size='sm'>Remove User</Button>
+            </div>
+          </Form>
+        </CardBody>
         <ToastContainer/>
     </Card>
   )

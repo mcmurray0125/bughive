@@ -51,8 +51,8 @@ export default function AddTeamMember({projectId, setProjectTeam, toggle }) {
       };
       
   return (
-    <Container>
-        <Form onSubmit={submit}>
+    <Container className='p-3'>
+        <Form onSubmit={submit} >
         <FormGroup>
             <Label className='m-1'>Available Users</Label>
             <Input

@@ -37,7 +37,7 @@
 .sidebar {
   width: 273px;
   height: 100dvh;
-  background-color: white;
+  background-color: var(--light-text);
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   position: relative;
@@ -79,7 +79,7 @@
   align-items: center;
   justify-content: center;
   width: 273px;
-  background-color: white;
+  background-color: transparent;
 }
 .nav-item a {
   position: relative;
@@ -99,7 +99,7 @@
 }
 .nav-item a.active {
   color: #5932ea;
-  background-color: #f6f6f6;
+  background-color: #cecece;
   font-weight: 700;
 }
 .nav-item a.active::after {
@@ -130,7 +130,7 @@
 /* Cards */
 .dashboard-card-title,
 .card-header {
-  color: var(--dark-text);
+  color: var(--dark-text) !important;
 }
 .card {
   border-radius: 6px !important;
@@ -182,5 +182,8 @@
   }
   .sidebar .nav-item {
     width: 100%;
+  }
+  .project-header h5 {
+    font-size: 14px;
   }
 }

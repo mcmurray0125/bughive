@@ -96,8 +96,8 @@ export default function Comments({ selectedTicket, selectedTicketId, projectId})
 
   return (
     <Card>
-        <CardHeader className="bg-white">
-            <h4 className="m-0">Comments</h4>
+        <CardHeader >
+            <h5 className="m-0 dashboard-card-title">Comments</h5>
         </CardHeader>
         {comments.length === 0 ? <h5 className="ms-3 mt-3">No Comments</h5> :
         comments.map((comment) => {

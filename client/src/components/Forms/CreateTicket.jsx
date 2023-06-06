@@ -64,7 +64,7 @@ export default function CreateTicket({ toggle, setProjectTickets, team }) {
     
 
   return (
-    <Container className="p-2">
+    <Container className="p-3">
         <Form onSubmit={handleSubmit}>
             <FormGroup>
                 <Label htmlFor="title">Title</Label>

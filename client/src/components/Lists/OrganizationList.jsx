@@ -1,12 +1,12 @@
-import { useState, useEffect } from "react";
 import { Card, CardHeader, ListGroup, ListGroupItem } from "reactstrap"
-import API from "../../utilities/API";
 
 export default function OrganizationList({props}) {
 
   return (
     <Card className="admin-card">
-        <CardHeader className="h5">Organization</CardHeader>
+        <CardHeader>
+            <p className="dashboard-card-title">Organization</p>
+        </CardHeader>
         <ListGroup className="p-3">
             {props.allUsers.map((user) => {
                 return (

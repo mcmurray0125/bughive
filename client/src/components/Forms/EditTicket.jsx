@@ -79,7 +79,7 @@ export default function EditTicket({ team, ticketData, assignedDevs, setProjectT
       }
 
   return (
-    <Container className='py-2' fluid>
+    <Container className='p-3' fluid>
         <Form onSubmit={handleSubmit}>
             <FormGroup>
                 <Label htmlFor="title"> Title </Label>

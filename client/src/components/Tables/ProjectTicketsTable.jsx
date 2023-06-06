@@ -1,5 +1,17 @@
 import {useEffect, useState} from "react";
-import { Table, Button, Modal, ModalHeader, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap"
+import {
+    Table,
+    Button,
+    Modal,
+    ModalHeader,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    Card,
+    CardHeader,
+    CardBody
+    } from "reactstrap"
 import API from "../../utilities/API";
 
 import "../../assets/css/tables.css"
@@ -36,16 +48,18 @@ export default function ProjectTicketsTable
 
     return(
         <>
-        <div className="table-wrapper project-tickets-wrapper p-3 bg-white">
-            <div className="d-flex justify-content-between align-items-center">
-                <p className="dashboard-card-title">Tickets</p>
-                <Button
-                className="new-project-btn"
-                onClick={toggleNewTicket}
-                >
-                    New Ticket
-                </Button>
-            </div>
+        <Card className="table-wrapper project-tickets-wrapper bg-white">
+            <CardHeader>
+                <div className="d-flex justify-content-between align-items-center">
+                    <p className="dashboard-card-title">Tickets</p>
+                    <Button
+                    className="new-project-btn"
+                    onClick={toggleNewTicket}
+                    >
+                        New Ticket
+                    </Button>
+                </div>
+            </CardHeader>
             <Modal  isOpen={showNewTicketModal} sz="sm">
                 <ModalHeader toggle={toggleNewTicket}>Create a New Ticket</ModalHeader>
                 <CreateTicket
@@ -55,6 +69,7 @@ export default function ProjectTicketsTable
                     setProjectTickets={setProjectTickets}
                 />
             </Modal>
+            <CardBody className="p-2">
             {projectTickets.length === 0 ? 
                 <p className="m-0 mt-3 ps-2">No Tickets Found</p>
                 :
@@ -90,7 +105,7 @@ export default function ProjectTicketsTable
                                             <DropdownItem onClick={toggleEditTicket}>
                                                 Edit Ticket
                                             </DropdownItem>
-
+                                            <DropdownItem divider/>
                                             <DropdownItem
                                                 onClick={() => {
                                                 deleteTicket(ticket.id);
@@ -119,7 +134,8 @@ export default function ProjectTicketsTable
                     </tbody>
                 </Table>
             }
-        </div>
+            </CardBody>
+        </Card>
         </>
     )
 }

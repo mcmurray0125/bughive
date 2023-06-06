@@ -118,6 +118,7 @@ export default function Project() {
               projectId={projectId}
               memberModalOpen={memberModalOpen}
               toggleNewMember={toggleNewMember}
+              projectData={projectData}
             />
             <ProjectTicketsTable
               projectId={projectId}

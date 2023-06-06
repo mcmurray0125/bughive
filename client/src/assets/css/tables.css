@@ -3,11 +3,11 @@
 }
 .table-1 a {
   text-decoration: none;
-  color: var(--link-color);
+  color: var(--dark-text);
 }
 .table-1 a:hover {
   text-decoration: none;
-  color: var(--link-hover);
+  color: var(--link-color);
 }
 .project-name {
   min-height: 100% !important;
@@ -36,10 +36,15 @@
   cursor: pointer;
 }
 .new-project-btn {
-  background-color: #f7f7f7 !important;
+  background-color: white !important;
   color: #1a2b88 !important;
   border-color: transparent !important;
-  border-radius: 10px !important;
+  border-radius: 6px !important;
+  transition: 0.15s;
+}
+.new-project-btn:hover {
+  background-color: #1a2b88 !important;
+  color: var(--light-text) !important;
 }
 .table-1 th {
   font-size: 1rem;
@@ -56,4 +61,10 @@
 }
 .project-tickets-wrapper {
   flex: 1.5;
+}
+
+@media (max-width: 514px) {
+  .table-1 {
+    font-size: 14px;
+  }
 }

@@ -1,5 +1,17 @@
 import {useEffect, useState} from "react";
-import { Table, Button, Modal, ModalHeader, UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem  } from "reactstrap"
+import {
+    Table,
+    Button,
+    Modal,
+    ModalHeader,
+    UncontrolledDropdown,
+    DropdownToggle,
+    DropdownMenu,
+    DropdownItem,
+    Card,
+    CardHeader,
+    CardBody
+} from "reactstrap"
 import { Link } from "react-router-dom"
 
 import UsersCell from "./UsersCell";
@@ -88,78 +100,81 @@ export default function ProjectTable() {
     }
           
     return(
-        <>
-        <div className="table-wrapper p-3 bg-white">
-            <div className="d-flex justify-content-between align-items-center">
-                <p className="dashboard-card-title ms-2">Projects</p>
-                <Button className="new-project-btn" onClick={toggleNewProject}>New Project</Button>
-            </div>
-            <Modal isOpen={isNewProjectOpen} toggle={toggleNewProject} sz="sm">
-                <ModalHeader toggle={toggleNewProject}>Add a New Project</ModalHeader>
-                <CreateProject
-                    toggle={toggleNewProject}
-                    setProjects={setProjects}
-                />
-            </Modal>
-            <Table className="table-1 m-0">
-                <thead>
-                    <tr>
-                        <th>Project</th>
-                        <th>Description</th>
-                        <th>Collaborators</th>
-                        <th/>
-                    </tr>
-                </thead>
-                <tbody>
-                    {projects &&
-                        projects.map((project) => {
-                            return(
-                                <tr key={project.id}>
-                                    <td><Link to={`/admin/project/${project.id}`}>{project.name}</Link></td>
-                                    <td>{project.description}</td>
-                                    <td>
-                                        <UsersCell
-                                        projectId={project.id}
-                                        selectedProjectId={selectedProjectId}
-                                        />                       
-                                    </td>
-                                    <td>
-                                        <UncontrolledDropdown className="d-flex justify-content-center align-items-center projects-more">
-                                            <DropdownToggle
-                                                size="sm"
-                                                color=""
-                                                role="button"
-                                                id={project.id}
-                                                onClick={(e) => selectProject(e)}
-                                            >
-                                                <i className="fa-solid fa-ellipsis-vertical project-ellipsis"/>
-                                            </DropdownToggle>
-                                            <DropdownMenu>
-                                                <DropdownItem id={project.id} onClick={toggleEditProject}>
-                                                    Edit Project
-                                                </DropdownItem>
-                                                <DropdownItem id={project.id} onClick={() => {deleteProject(project.id)}}>
-                                                    Delete Project
-                                                </DropdownItem>
-                                            </DropdownMenu>
-                                        </UncontrolledDropdown>
-                                    </td>
-                                </tr>
-                            )
-                        })
-                    }
-                    <Modal isOpen={isEditProjectOpen} toggle={toggleEditProject}>
-                        <ModalHeader toggle={toggleEditProject}>Edit Project</ModalHeader>
-                        <EditProject
-                            toggle={toggleEditProject}
-                            selectedProjectData={selectedProjectData}
-                            selectedProjectTeam={selectedProjectTeam}
-                            resetProjectId={resetProjectId}
-                        />
-                    </Modal>
-                </tbody>
-            </Table>
-        </div>
-        </>
+        <Card className="table-wrapper bg-white">
+            <CardHeader>
+                <div className="d-flex justify-content-between align-items-center">
+                    <p className="dashboard-card-title">Projects</p>
+                    <Button className="new-project-btn" onClick={toggleNewProject}>New Project</Button>
+                </div>
+                <Modal isOpen={isNewProjectOpen} toggle={toggleNewProject} sz="sm">
+                    <ModalHeader toggle={toggleNewProject}>Add a New Project</ModalHeader>
+                    <CreateProject
+                        toggle={toggleNewProject}
+                        setProjects={setProjects}
+                    />
+                </Modal>
+            </CardHeader>
+            <CardBody className="p-3">
+                <Table striped className="table-1 m-0">
+                    <thead>
+                        <tr>
+                            <th>Project</th>
+                            <th>Description</th>
+                            <th>Collaborators</th>
+                            <th/>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {projects &&
+                            projects.map((project) => {
+                                return(
+                                    <tr key={project.id}>
+                                        <td><Link to={`/admin/project/${project.id}`}>{project.name}</Link></td>
+                                        <td>{project.description}</td>
+                                        <td>
+                                            <UsersCell
+                                            projectId={project.id}
+                                            selectedProjectId={selectedProjectId}
+                                            />                       
+                                        </td>
+                                        <td>
+                                            <UncontrolledDropdown className="d-flex justify-content-center align-items-center projects-more">
+                                                <DropdownToggle
+                                                    size="sm"
+                                                    color=""
+                                                    role="button"
+                                                    id={project.id}
+                                                    onClick={(e) => selectProject(e)}
+                                                >
+                                                    <i className="fa-solid fa-ellipsis-vertical project-ellipsis"/>
+                                                </DropdownToggle>
+                                                <DropdownMenu>
+                                                    <DropdownItem id={project.id} onClick={toggleEditProject}>
+                                                        Edit Project
+                                                    </DropdownItem>
+                                                    <DropdownItem divider/>
+                                                    <DropdownItem id={project.id} onClick={() => {deleteProject(project.id)}}>
+                                                        Delete Project
+                                                    </DropdownItem>
+                                                </DropdownMenu>
+                                            </UncontrolledDropdown>
+                                        </td>
+                                    </tr>
+                                )
+                            })
+                        }
+                        <Modal isOpen={isEditProjectOpen} toggle={toggleEditProject}>
+                            <ModalHeader toggle={toggleEditProject}>Edit Project</ModalHeader>
+                            <EditProject
+                                toggle={toggleEditProject}
+                                selectedProjectData={selectedProjectData}
+                                selectedProjectTeam={selectedProjectTeam}
+                                resetProjectId={resetProjectId}
+                            />
+                        </Modal>
+                    </tbody>
+                </Table>
+            </CardBody>
+        </Card>
     )
 }

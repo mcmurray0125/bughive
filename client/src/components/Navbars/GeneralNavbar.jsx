@@ -11,8 +11,8 @@ const GeneralNavbar = (props) => {
           <h2>
             {props.brandText}
           </h2>
-
         </Container>
+        <div className="navbar-texture"></div>
       </Navbar>
     </>
   );

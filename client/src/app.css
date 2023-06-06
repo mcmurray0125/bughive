@@ -20,4 +20,5 @@ body {
   height: 100dvh;
   background-color: #e8e8e8;
   background-image: url("https://www.transparenttextures.com/patterns/billie-holiday.png");
+  overflow-x: hidden;
 }

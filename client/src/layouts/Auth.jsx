@@ -27,9 +27,9 @@ export default function Auth() {
         <>
         {/* Add Ternary, and display a redirecting.. message if authenticated. */}
         {!isAuthenticated &&
-        <div className="bg-primary bg-gradient">
+        <div className="auth-bg">
             <Container className="auth-wrapper d-flex flex-column align-items-center pt-5">
-                <header className="header text-center py-5">
+                <header className="auth-header text-center py-5">
                         <h2 className="fw-bold">Bug Tracker</h2>
                         <p>Login or register</p>
                 </header>
@@ -41,6 +41,7 @@ export default function Auth() {
                     <AuthFooter />
                 </Container>
             </Container>
+            <div className="auth-texture"></div>
         </div>
         }
         </>

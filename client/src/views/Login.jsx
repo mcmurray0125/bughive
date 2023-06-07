@@ -33,7 +33,6 @@ export default function Login() {
 
         
     async function submit() {
-        console.log(values);
         try {
             const response = await API.login(values);
             const { token, role } = response.data;
@@ -47,7 +46,6 @@ export default function Login() {
             if (role === "admin") {
             navigate("/admin/index");
             } else if (role === "developer" || role === "project manager") {
-            console.log("here");
             navigate("/general/index");
             }
         
@@ -64,6 +62,7 @@ export default function Login() {
         <>
         <div className="auth-card p-5">
             <Form onSubmit={handleSubmit} className="d-flex align-items-center flex-column">
+                <p className="auth-card-title fs-5 mb-4">Log in</p>
                 <InputGroup>
                     <InputGroupText className="bg-white">
                         <i className="fa-solid fa-envelope"></i>

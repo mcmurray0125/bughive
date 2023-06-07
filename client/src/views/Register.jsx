@@ -16,7 +16,7 @@ export default function Register() {
         <>
         <div className="auth-card p-5">
             <Form className="d-flex align-items-center flex-column">
-            <p className="fs-4 mb-5">Sign up</p>
+            <p className="auth-card-title fs-5 mb-4">Sign up</p>
                 <div className="name-inputs">
                     <InputGroup>
                         <InputGroupText className="bg-white">

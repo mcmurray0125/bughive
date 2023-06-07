@@ -1,12 +1,57 @@
+.auth-bg {
+  background-image: linear-gradient(
+    to left,
+    var(--link-color),
+    rgb(132, 100, 249)
+  );
+  color: var(--light-text) !important;
+}
+.auth-texture {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+  mix-blend-mode: multiply;
+  background-color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/light-honeycomb.png");
+  z-index: 1;
+  pointer-events: none;
+}
 .auth-wrapper {
   height: 100dvh;
 }
-.auth-card {
-  border-radius: 10px;
-  background-color: #f8f8f8;
+.auth-header,
+.auth-card-wrapper,
+.auth-footer {
+  z-index: 3;
 }
 .auth-card-wrapper {
   max-width: 500px;
+}
+.auth-card {
+  border-radius: 6px;
+  position: relative;
+}
+.auth-card::before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 6px;
+  position: absolute;
+  background-color: var(--card-header);
+  background-image: url("https://www.transparenttextures.com/patterns/light-honeycomb.png");
+  filter: brightness(1.25);
+  z-index: -1;
+  pointer-events: none;
+}
+.auth-card-title,
+.auth-footer,
+.auth-footer a {
+  color: var(--dark-text);
 }
 .name-inputs {
   display: flex;

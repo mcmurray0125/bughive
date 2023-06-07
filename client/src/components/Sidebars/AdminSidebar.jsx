@@ -45,16 +45,13 @@ const AdminSidebar = (props) => {
 
   const getSidebarStyles = () => {
     if (screenWidth < 995) {
-      return sidebarOpen ?
-      {
-        top: "0"
-      }
-      : 
-      {
-        top: "-100dvh"
-      };
+      return sidebarOpen
+        ? { top: "0" }
+        : { top: "-100dvh" };
     }
-  };
+  
+    return { height: "auto" };
+  };  
 
   const toggleSidebar = () => {
     if (screenWidth < 995 ) {

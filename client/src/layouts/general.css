@@ -204,6 +204,7 @@
   padding: 1rem;
   flex: 1;
   position: relative;
+  cursor: pointer;
 }
 
 

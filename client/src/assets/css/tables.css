@@ -38,6 +38,9 @@ tbody tr:hover {
 .project-table {
   background-color: white;
 }
+.project-team-table {
+  min-width: 33% !important;
+}
 .projects-more {
   cursor: pointer;
 }

@@ -27,7 +27,7 @@ export default function ProjectTeamTable({setProjectTeam, projectTeam, memberMod
 
     return(
         <>
-        <Card className="table-wrapper">
+        <Card className="table-wrapper project-team-table">
             <CardHeader>
             <div className="d-flex justify-content-between align-items-center">
                 <h5 className="dashboard-card-title">Team</h5>

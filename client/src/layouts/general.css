@@ -190,6 +190,23 @@
   box-shadow: 0 20px 10px -20px rgba(0, 0, 0, 0.45) inset,
     20px 0 10px -20px rgba(0, 0, 0, 0.45) inset;
 }
+/* Charts */
+.charts-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.chart-wrapper {
+  width: 33.33%;
+  padding: 1rem;
+  flex: 1;
+  position: relative;
+}
+
+
 
 /* Media Queries */
 @media (max-width: 1159px) {
@@ -218,8 +235,17 @@
     font-size: 14px;
   }
 }
+
 @media (max-width: 650px) {
   .admin-container {
     flex-direction: column;
+  }
+}
+@media (max-width: 510px) {
+  .charts-container {
+    flex-direction: column;
+  }
+  .chart-wrapper {
+    width: 100%;
   }
 }

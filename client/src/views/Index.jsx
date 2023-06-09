@@ -33,10 +33,16 @@ export default function Index() {
     return(
         <Container className="dashboard-container py-2" fluid>
             <ProjectTable/>
-            <div>
-                <TicketsChart data={ticketsData} focus="status" /> {/* Chart for status */}
-                <TicketsChart data={ticketsData} focus="priority" /> {/* Chart for priority */}
-                <TicketsChart data={ticketsData} focus="type" /> {/* Chart for type */}
+            <div className="charts-container my-3">
+              <div className="chart-wrapper card">
+                <TicketsChart ticketsData={ticketsData} focus="status" /> {/* Chart for status */}
+              </div>
+              <div className="chart-wrapper card">
+                <TicketsChart ticketsData={ticketsData} focus="priority" /> {/* Chart for priority */}
+              </div>
+              <div className="chart-wrapper card">
+                <TicketsChart ticketsData={ticketsData} focus="type" /> {/* Chart for type */}
+              </div>
             </div>
         </Container>
     )

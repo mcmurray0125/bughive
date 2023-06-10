@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import { Table, Card, CardHeader, CardBody } from "reactstrap"
+import { SyncLoader } from "react-spinners"
 import moment from "moment"
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
@@ -49,9 +50,10 @@ export default function TicketsTable() {
 
     if (loading) {
         return (
-            <>
-              <h2>Loading Tickets...</h2>
-            </>
+          <div className="loading-wrapper d-flex gap-2">
+            <h2 style={{color:"#372c62"}}>Loading</h2>
+            <SyncLoader color="#372c62" />
+          </div>
           );
     }
           

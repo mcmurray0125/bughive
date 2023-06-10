@@ -16,8 +16,16 @@ import {
 
 import "../../assets/css/tables.css"
 
-export default function ProjectTeamTable({setProjectTeam, projectTeam, memberModalOpen, toggleNewMember, projectId, projectData}) {
-          
+export default function ProjectTeamTable({
+        setProjectTeam,
+        projectTeam,
+        memberModalOpen,
+        toggleNewMember,
+        projectId,
+        projectData
+    })
+{
+
     const removeTeamMember = async (projectId, userId) => {
         await API.removeTeamMember(projectId, userId);
 

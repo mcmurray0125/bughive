@@ -1,10 +1,15 @@
-import React from 'react'
+import { useState, useEffect } from "react";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from 'chart.js';
 import { Pie } from "react-chartjs-2"
+import { FadeLoader } from "react-spinners"
+
+import API from "../../utilities/API"
 
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
-const TicketsChart = ({ ticketsData, focus }) => {
+const TicketsChart = ({ focus }) => {
+  const [ticketsData, setTicketsData] = useState([])
+  const [loading, setLoading] = useState(false)
   const focusValues = ticketsData.map(ticket => ticket[focus]);
   const uniqueFocusValues = [...new Set(focusValues)];
 
@@ -48,8 +53,43 @@ const TicketsChart = ({ ticketsData, focus }) => {
       },
     }
   }
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    setLoading(true)
+
+    async function fetchUserTickets() {
+      try {
+        const userTicketsRes = await (
+          await API.getUserTickets(abortController)
+        ).json();
+
+        setTicketsData(userTicketsRes);
+        setLoading(false);
+      } catch (err) {
+        if (!abortController.signal.aborted) {
+          console.log("Error fetching user tickets", err);
+        }
+      }
+    }
+    
+    fetchUserTickets();
+    return () => {
+      abortController.abort();
+    };
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="loading-wrapper d-flex justify-content-center">
+        <FadeLoader color="#372c62" />
+      </div>
+      )
+  }
   
-    return <Pie data={chartData} options={options}/>;
+    return (
+      <Pie data={chartData} options={options}/>
+    )
   };
   
   export default TicketsChart;

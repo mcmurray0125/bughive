@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import { SyncLoader } from "react-spinners"
 import {
     Table,
     Button,
@@ -96,7 +97,12 @@ export default function ProjectTable() {
 
 
     if (loading) {
-        return ( <h2>Loading...</h2> );
+        return (
+        <div className="loading-wrapper d-flex gap-2">
+            <h2 style={{color:"#372c62"}}>Loading</h2>
+            <SyncLoader color="#372c62" />
+        </div>
+        );
     }
           
     return(

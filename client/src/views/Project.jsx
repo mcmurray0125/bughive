@@ -81,7 +81,6 @@ export default function Project() {
 
     useEffect(() => {
       const abortController = new AbortController();
-      setLoading(true);
     
       async function fetchTicket() {
         try {
@@ -99,7 +98,6 @@ export default function Project() {
               abortController
             );
             setAssignedDevs(assignedDevs);
-            setLoading(false);
           }
         } catch (err) {
           if (!abortController.signal.aborted) {
@@ -145,6 +143,7 @@ export default function Project() {
               selectedTicket={selectedTicket}
               setSelectedTicket={setSelectedTicket}
               setSelectedTicketId={setSelectedTicketId}
+              selectedTicketId={selectedTicketId}
               assignedDevs={assignedDevs}
             />
           </div>

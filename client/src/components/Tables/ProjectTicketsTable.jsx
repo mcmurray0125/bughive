@@ -27,7 +27,8 @@ export default function ProjectTicketsTable
         setSelectedTicket,
         projectId,
         projectTeam,
-        assignedDevs
+        assignedDevs,
+        selectedTicketId
     })
     {
 
@@ -45,6 +46,12 @@ export default function ProjectTicketsTable
         const projectTicketsRes = await API.getProjectTickets(projectId);
         setProjectTickets(projectTicketsRes);
       };
+
+    const getActive = (ticketId) => {
+        if (ticketId === selectedTicketId) {
+            return "active-ticket"
+        }
+    }
 
     return(
         <>
@@ -85,7 +92,7 @@ export default function ProjectTicketsTable
                     <tbody>
                         {projectTickets.map((ticket) => {
                             return(
-                                <tr key={ticket.id} onClick={() => setSelectedTicketId(ticket.id)}>
+                                <tr key={ticket.id} onClick={() => setSelectedTicketId(ticket.id)} id={ticket.id} className={getActive(ticket.id)}>
                                     <td>{ticket.title}</td>
                                     <td>{ticket.description}</td>
                                     <td>{ticket.first_name} {ticket.last_name}</td>

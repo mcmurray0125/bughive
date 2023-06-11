@@ -19,7 +19,8 @@
 .ticket-row {
   cursor: pointer;
 }
-tbody tr:hover {
+tbody tr:hover,
+.active-ticket {
   background-color: #e2ddef;
 }
 

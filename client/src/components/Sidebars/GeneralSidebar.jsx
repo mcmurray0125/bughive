@@ -1,10 +1,12 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import { useAuth } from "../../contexts/AuthContext";
+import logo from "../../assets/bughive-logo-color.png"
+import purpleIcon from "../../assets/bughive-icon-purple.png"
 
 import {routes, router} from '../../routes';
 
 import { NavLink } from 'react-router-dom';
-// reactstrap components
 import {
   NavItem,
   Nav,
@@ -12,10 +14,50 @@ import {
 } from "reactstrap";
 
 const GeneralSidebar = (props) => {
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [collapseOpen, setCollapseOpen] = useState();
+  const { setAuth, setRole, setUsername } = useAuth();
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
 
   const generalRoute = routes.find(route => route.routeName === 'general');
   const generalRoutes = generalRoute.children
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+  
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const getToggleStyles = () => {
+    if (screenWidth < 995) {
+      return !sidebarOpen ?
+      { bottom: "-50px", left: "50dvw", }
+      : 
+      { bottom: "0px", left: "50dvw", borderRadius: "8px 8px 0px 0px" };
+    } else {
+      return { display: 'none' };
+    }
+  };
+
+  const getSidebarStyles = () => {
+    if (screenWidth < 995) {
+      return sidebarOpen
+        ? { top: "0" }
+        : { top: "-100dvh" };
+    }
+  
+    return { height: "auto" };
+  };  
+
+  const toggleSidebar = () => {
+    if (screenWidth < 995 ) {
+      setSidebarOpen(!sidebarOpen);
+    }
+  };
 
   // toggles collapse between opened and closed (true/false)
   const toggleCollapse = () => {
@@ -33,7 +75,7 @@ const GeneralSidebar = (props) => {
           <NavItem key={key}>
             <NavLink
               to={prop.path}
-              onClick={closeCollapse}
+              onClick={(closeCollapse, toggleSidebar)}
             >
               <i className={prop.icon} />
               {prop.name}
@@ -47,18 +89,37 @@ const GeneralSidebar = (props) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("username");
     setAuth(false);
     setRole("");
+    setUsername("");
   };
 
+
   return (
-    <Nav vertical justified className="sidebar">
-      {router && createLinks()}
-      <hr/>
-      <NavItem>
-        <Button className="logout-btn btn-danger" onClick={logout}>Log out</Button>
-      </NavItem>
-    </Nav>
+    <>
+      <Nav vertical justified className="sidebar" style={getSidebarStyles()}>
+        {screenWidth <995 &&
+        <div
+          className="toggle"
+          aria-label="toggle-sidebar"
+          role="button"
+          onClick={toggleSidebar}
+          style={getToggleStyles()}
+        >
+          <img src={purpleIcon}/>
+        </div>
+        }
+        <div className="logo-wrapper p-4">
+          <img src={logo} className="logo p-2"/>
+        </div>
+        {router && createLinks()}
+        <hr/>
+        <NavItem>
+          <Button className="logout-btn btn-danger" onClick={logout}>Log out</Button>
+        </NavItem>
+      </Nav>
+    </>
   );
 };
 

@@ -52,6 +52,10 @@
 .auth-footer,
 .auth-footer a {
   color: var(--dark-text);
+  transition: 0.15s;
+}
+.auth-footer a:hover {
+  color: white;
 }
 .name-inputs {
   display: flex;

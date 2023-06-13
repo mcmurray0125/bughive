@@ -14,6 +14,7 @@ import {
     CardBody
 } from "reactstrap"
 import { Link } from "react-router-dom"
+import { useAuth } from "../../contexts/AuthContext";
 
 import UsersCell from "./UsersCell";
 import API from "../../utilities/API";
@@ -29,6 +30,7 @@ export default function ProjectTable() {
     const [selectedProjectId, setSelectedProjectId] = useState(null);
     const [selectedProjectData, setSelectedProjectData] = useState([]);
     const [selectedProjectTeam, setSelectedProjectTeam] = useState([]);
+    const { rootPath } = useAuth();
 
     const toggleNewProject = () => setIsNewProjectOpen(!isNewProjectOpen);
     const toggleEditProject = () => setIsEditProjectOpen(!isEditProjectOpen);
@@ -135,7 +137,7 @@ export default function ProjectTable() {
                             projects.map((project) => {
                                 return(
                                     <tr key={project.id}>
-                                        <td><Link to={`/admin/project/${project.id}`}>{project.name}</Link></td>
+                                        <td><Link to={`${rootPath}/project/${project.id}`}>{project.name}</Link></td>
                                         <td>{project.description}</td>
                                         <td>
                                             <UsersCell

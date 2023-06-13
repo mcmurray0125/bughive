@@ -1,8 +1,8 @@
-import { Navigate, Outlet, useLocation, matchPath } from "react-router-dom";
-// reactstrap components
+import { Navigate, Outlet, useLocation } from "react-router-dom";
+
 import { Container } from "reactstrap";
 import logo from "../assets/react.svg"
-// core components
+
 import AdminSidebar from "../components/Sidebars/AdminSidebar";
 import GeneralNavbar from "../components/Navbars/GeneralNavbar";
 import GeneralFooter from "../components/Footers/GeneralFooter";
@@ -13,7 +13,7 @@ import "../layouts/general.css"
 import {routes} from "../routes";
 
 const Admin = (props) => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, role } = useAuth();
   const location = useLocation();
 
   const adminRoute = routes.find(route => route.routeName === 'admin');
@@ -35,7 +35,10 @@ const Admin = (props) => {
   
     return "Brand";
   };
-  
+
+  if (role === "developer") {
+    window.location.pathname = "/general/index";
+  }
 
   return (
     isAuthenticated?

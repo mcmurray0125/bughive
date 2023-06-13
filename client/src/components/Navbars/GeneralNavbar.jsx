@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 const GeneralNavbar = (props) => {
   const { username, rootPath } = useAuth();
   const location = useLocation();
-  console.log(location)
+  
   return (
     <>
       <Navbar expand="md" id="navbar-main">

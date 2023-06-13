@@ -17,7 +17,7 @@ import { Link } from "react-router-dom"
 
 
 export default function Login() {
-    const { setAuth, setRole } = useAuth();
+    const { setAuth, setRole, setUsername } = useAuth();
     const navigate = useNavigate();
 
     const initialLoginValues = {
@@ -35,13 +35,15 @@ export default function Login() {
     async function submit() {
         try {
             const response = await API.login(values);
-            const { token, role } = response.data;
+            const { token, role, username } = response.data;
         
             localStorage.setItem("token", token);
             localStorage.setItem("role", role);
+            localStorage.setItem("username", username);
         
             setRole(role);
             setAuth(true);
+            setUsername(username);
         
             if (role === "admin") {
             navigate("/admin/index");

@@ -43,9 +43,18 @@
   z-index: 1;
   pointer-events: none;
 }
-#navbar-main h2 {
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#navbar-main h2,
+#username {
   position: relative;
   z-index: 3 !important;
+}
+#username {
+  font-size: 18px;
 }
 /* SIDEBAR */
 /* Dynamic Styles in react Sidebar Components  */
@@ -206,8 +215,6 @@
   position: relative;
   cursor: pointer;
 }
-
-
 
 /* Media Queries */
 @media (max-width: 1159px) {

@@ -10,6 +10,7 @@ export function AuthProvider({ children }) {
     const [isAuthenticated, setIsAuthenticated] = useState(true);
     const [role, setRole] = useState("");
     const [rootPath, setRootPath] = useState("")
+    const [username, setUsername] = useState("");
 
     let token = localStorage.getItem("token");
 
@@ -18,8 +19,8 @@ export function AuthProvider({ children }) {
           setIsAuthenticated(false);
       } else {
           setRole(localStorage.getItem("role"));
+          setUsername(localStorage.getItem("username"));
           setRootPath(role === "admin" ? "/admin" : "/general");
-          console.log("role set")
       }
     }, [token, role]);
     
@@ -33,6 +34,8 @@ export function AuthProvider({ children }) {
         role,
         setAuth,
         setRole,
+        setUsername,
+        username,
         rootPath
     }
 

@@ -16,7 +16,7 @@ import {
 const AdminSidebar = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
   const [collapseOpen, setCollapseOpen] = useState();
-  const { setAuth, setRole } = useAuth();
+  const { setAuth, setRole, setUsername } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
 
@@ -89,8 +89,10 @@ const AdminSidebar = (props) => {
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    localStorage.removeItem("username");
     setAuth(false);
     setRole("");
+    setUsername("");
   };
 
 

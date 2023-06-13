@@ -34,6 +34,7 @@ router.post("/", async (req, res) => {
     res.json({
       token,
       role: user.rows[0].role,
+      username: user.rows[0].first_name + " " + user.rows[0].last_name
     });
   } catch (err) {
     console.error(err.message);

@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import { Table, Card, CardHeader, CardBody } from "reactstrap"
 import { SyncLoader } from "react-spinners"
 import moment from "moment"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 
 import API from "../../utilities/API";
@@ -65,6 +65,8 @@ export default function TicketsTable() {
             </div>
           </CardHeader>
           <CardBody className="p-3">
+            {userTickets.length > 0
+            ?
             <Table striped responsive className="table-1 m-0">
                 <thead>
                     <tr>
@@ -97,6 +99,12 @@ export default function TicketsTable() {
                     }
                 </tbody>
             </Table>
+            :
+            <div className="m-2">
+              <p>You have not opened any tickets</p>
+              <p>Visit a <Link to={`${rootPath}/index`}>project</Link> to create a new ticket</p>
+            </div>
+            }
           </CardBody>
         </Card>
     )

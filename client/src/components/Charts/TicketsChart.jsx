@@ -24,11 +24,11 @@ const TicketsChart = ({ focus }) => {
       {
         data,
         backgroundColor: [
-          'rgba(255, 99, 132, 0.6)',
           '#3232eab9',
           '#32ea32b9',
           '#ea3292b9',
           'rgba(153, 102, 255, 0.6)',
+          'rgba(255, 99, 132, 0.6)',
           '#ea8a32b9',
         ],
         hoverOffset: 4
@@ -88,7 +88,14 @@ const TicketsChart = ({ focus }) => {
   }
   
     return (
+      ticketsData.length > 0
+      ?
       <Pie data={chartData} options={options}/>
+      :
+      <>
+        <h6 style={{textAlign: "center", fontSize: "18px"}}>Tickets by {focus.toUpperCase()}</h6>
+        <p style={{textAlign: "center"}} className="m-0 mt-1">No data</p>
+      </>
     )
   };
   

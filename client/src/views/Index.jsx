@@ -1,8 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import { Container } from "reactstrap"
+import { Container, Card } from "reactstrap"
 import ProjectTable from "../components/Tables/ProjectTable";
 import TicketsChart from "../components/Charts/TicketsChart";
-import API from "../utilities/API.js"
 import { useAuth } from "../contexts/AuthContext"
 
 export default function Index() {
@@ -17,16 +16,16 @@ export default function Index() {
     return(
         <Container className="dashboard-container py-2" fluid>
             <ProjectTable/>
-            <div className="charts-container my-3">
-              <div className="chart-wrapper card" onClick={handleChartClick}>
+            <div className="charts-container my-5">
+              <Card className="chart-wrapper card" onClick={handleChartClick}>
                 <TicketsChart focus="status" /> 
-              </div>
-              <div className="chart-wrapper card" onClick={handleChartClick}>
+              </Card>
+              <Card className="chart-wrapper card" onClick={handleChartClick}>
                 <TicketsChart focus="priority" />
-              </div>
-              <div className="chart-wrapper card" onClick={handleChartClick}>
+              </Card>
+              <Card className="chart-wrapper card" onClick={handleChartClick}>
                 <TicketsChart focus="type" />
-              </div>
+              </Card>
             </div>
         </Container>
     )

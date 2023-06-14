@@ -123,6 +123,7 @@ export default function ProjectTable() {
                 </Modal>
             </CardHeader>
             <CardBody className="p-3">
+                {projects.length > 0 ?
                 <Table striped className="table-1 m-0">
                     <thead>
                         <tr>
@@ -182,6 +183,9 @@ export default function ProjectTable() {
                         </Modal>
                     </tbody>
                 </Table>
+                :
+                <p className="m-2">No Projects Found</p>
+                }
             </CardBody>
         </Card>
     )

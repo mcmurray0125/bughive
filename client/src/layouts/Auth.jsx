@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom"
 import { Container } from "reactstrap"
+import { useLocation } from "react-router-dom";
 
 import AuthFooter from "../components/Footers/AuthFooter"
 import { useAuth } from "../contexts/AuthContext";
@@ -11,6 +12,7 @@ import "./auth.css"
 export default function Auth() {
     const { isAuthenticated, role } = useAuth()
     const navigate = useNavigate();
+    const location = useLocation();
 
     useEffect(() => {
         // redirect user away from login page based on role
@@ -20,6 +22,8 @@ export default function Auth() {
           } else {
             navigate("/general/index");
           }
+        } else if (location.pathname != "/auth/login" && location.pathname != "/auth/register") {
+          navigate("/auth/login");
         }
       }, [isAuthenticated, role]);
 

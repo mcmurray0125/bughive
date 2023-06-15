@@ -67,6 +67,14 @@
   text-decoration: none;
   color: white !important;
 }
+#welcome-toast {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform: translate(50%, 50%);
+  margin-top: 150%;
+  background-color: var(--dark-text);
+}
 /* MEDIA QUERIES */
 @media screen and (max-width: 600px) {
   .name-inputs {

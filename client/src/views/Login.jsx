@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import API from "../utilities/API";
 import useForm from "../utilities/formValidation/useForm"
 import { useAuth } from "../contexts/AuthContext";
@@ -10,7 +10,10 @@ import {
     InputGroup,
     InputGroupText,
     Input,
-    Button
+    Button,
+    Toast,
+    ToastHeader,
+    ToastBody
   } from "reactstrap";
 
 import { Link } from "react-router-dom"
@@ -18,6 +21,8 @@ import { Link } from "react-router-dom"
 
 export default function Login() {
     const { setAuth, setRole, setUsername } = useAuth();
+    const [toastOpen, setToastOpen] = useState(true);
+    const hideToast = () => {setToastOpen(false)}
     const navigate = useNavigate();
 
     const initialLoginValues = {
@@ -63,6 +68,23 @@ export default function Login() {
     return(
         <>
         <div className="auth-card p-5">
+            {/* Welcome Toast Message */}
+            <Toast isOpen={toastOpen} id="welcome-toast">
+                <ToastHeader toggle={hideToast} style={{color: "var(--dark-text)"}}>
+                    Demo User Login!
+                </ToastHeader>
+                <ToastBody>
+                    <p>
+                        Hello Visitor! You can log into a demo account using these credentials:
+                    </p>
+                    <div>
+                        Email: demouser@example.com
+                        <br/>
+                        Password: password
+                    </div>
+                </ToastBody>
+            </Toast>
+            {/* Login Form */}
             <Form onSubmit={handleSubmit} className="d-flex align-items-center flex-column">
                 <p className="auth-card-title fs-5 mb-4">Log in</p>
                 <InputGroup>

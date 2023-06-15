@@ -78,7 +78,7 @@ export default function ProjectTicketsTable
             </Modal>
             <CardBody className="p-2">
             {projectTickets.length === 0 ? 
-                <p className="m-0 mt-3 ps-2">No Tickets Found</p>
+                <p className="m-2">No Tickets Found</p>
                 :
                 <Table className="project-tickets-table table-1 m-0">
                     <thead>

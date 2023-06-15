@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import { SyncLoader } from "react-spinners"
+import { ToastContainer, toast } from "react-toastify"
 import {
     Table,
     Button,
@@ -85,16 +86,29 @@ export default function ProjectTable() {
     }, [selectedProjectId]);
 
     const deleteProject = async (projectId) => {
-        try {
-          await API.deleteProject(projectId);
-          await API.getProjects().then((json) => {
-            setProjects(json);
-          });
-        } catch (err) {
-          console.log(err);
+        if (projectId == 1) {
+            toast.error(`This special project cannot be deleted.`, {
+                position: "top-center",
+                autoClose: 4000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return;
+        } else {
+            try {
+              await API.deleteProject(projectId);
+              await API.getProjects().then((json) => {
+                setProjects(json);
+              });
+            } catch (err) {
+              console.log(err);
+            }
+
+            console.log("Project deleted");
         }
-    
-        console.log("Project deleted");
       };
 
 
@@ -187,6 +201,7 @@ export default function ProjectTable() {
                 <p className="m-2">No Projects Found</p>
                 }
             </CardBody>
+            <ToastContainer/>
         </Card>
     )
 }

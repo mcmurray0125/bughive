@@ -6,19 +6,20 @@ import purpleIcon from "../../assets/bughive-icon-purple.png"
 
 import {routes, router} from '../../routes';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   NavItem,
   Nav,
   Button
 } from "reactstrap";
 
-const GeneralSidebar = (props) => {
+const GeneralSidebar = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [collapseOpen, setCollapseOpen] = useState();
-  const { setAuth, setRole, setUsername } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const { setAuth, setRole, setUsername, rootPath } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const generalRoute = routes.find(route => route.routeName === 'general');
   const generalRoutes = generalRoute.children
@@ -59,26 +60,27 @@ const GeneralSidebar = (props) => {
     }
   };
 
-  // toggles collapse between opened and closed (true/false)
-  const toggleCollapse = () => {
-    setCollapseOpen((data) => !data);
-  };
-  // closes the collapse
-  const closeCollapse = () => {
-    setCollapseOpen(false);
-  };
+  const logoClick = (e) => {
+    e.preventDefault()
+    if (location.pathname === `${rootPath}/index`) {
+      return
+    } else {
+      navigate(`${rootPath}/index`)
+    }
+  }
+
   // generate the links that appear in the left menu / Sidebar
   const createLinks = () => {
-    return generalRoutes.map((prop, key) => {
-      if (prop.layout === "general" && prop.display) {
+    return generalRoutes.map((route, key) => {
+      if (route.layout === "general" && route.display) {
         return (
           <NavItem key={key}>
             <NavLink
-              to={prop.path}
-              onClick={(closeCollapse, toggleSidebar)}
+              to={route.path}
+              onClick={(toggleSidebar)}
             >
-              <i className={prop.icon} />
-              {prop.name}
+              <i className={route.icon} />
+              {route.name}
             </NavLink>
           </NavItem>
         );
@@ -111,7 +113,14 @@ const GeneralSidebar = (props) => {
         </div>
         }
         <div className="logo-wrapper p-4">
-          <img src={logo} className="logo p-2"/>
+          <img
+            src={logo}
+            alt="bughive-logo"
+            className="logo p-2"
+            role="button"
+            aria-label="home-button"
+            onClick={(e) => logoClick(e)}
+          />
         </div>
         {router && createLinks()}
         <hr/>

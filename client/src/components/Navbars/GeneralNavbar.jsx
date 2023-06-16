@@ -2,7 +2,7 @@ import { Navbar, Container } from "reactstrap";
 import { useAuth } from "../../contexts/AuthContext";
 import { useLocation } from "react-router-dom";
 
-const GeneralNavbar = (props) => {
+const GeneralNavbar = ({ brandText }) => {
   const { username, rootPath } = useAuth();
   const location = useLocation();
   
@@ -11,8 +11,9 @@ const GeneralNavbar = (props) => {
       <Navbar expand="md" id="navbar-main">
         <Container fluid className="navbar-container">
           <h2>
-            {props.brandText}
+            {brandText}
           </h2>
+          {/* If on dashboard (index) page, render username in navbar */}
           {location.pathname == rootPath+"/index" &&
           <h5 id="username">
             {username}

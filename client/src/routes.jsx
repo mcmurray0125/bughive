@@ -67,6 +67,7 @@ const routes = [
       },
       {
         path: "project/:id",
+        name: "Project",
         layout: "general",
         element: <Project />,
       },

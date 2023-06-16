@@ -6,19 +6,20 @@ import purpleIcon from "../../assets/bughive-icon-purple.png"
 
 import {routes, router} from '../../routes';
 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import {
   NavItem,
   Nav,
   Button
 } from "reactstrap";
 
-const AdminSidebar = (props) => {
+const AdminSidebar = () => {
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-  const [collapseOpen, setCollapseOpen] = useState();
-  const { setAuth, setRole, setUsername } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const { setAuth, setRole, setUsername, rootPath } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const adminRoute = routes.find(route => route.routeName === 'admin');
   const adminRoutes = adminRoute.children
@@ -58,27 +59,28 @@ const AdminSidebar = (props) => {
       setSidebarOpen(!sidebarOpen);
     }
   };
+  
+  const logoClick = (e) => {
+    e.preventDefault()
+    if (location.pathname === `${rootPath}/index`) {
+      return
+    } else {
+      navigate(`${rootPath}/index`)
+    }
+  }
 
-  // toggles collapse between opened and closed (true/false)
-  const toggleCollapse = () => {
-    setCollapseOpen((data) => !data);
-  };
-  // closes the collapse
-  const closeCollapse = () => {
-    setCollapseOpen(false);
-  };
   // generate the links that appear in the left menu / Sidebar
   const createLinks = () => {
-    return adminRoutes.map((prop, key) => {
-      if (prop.layout === "admin" && prop.display) {
+    return adminRoutes.map((route, key) => {
+      if (route.layout === "admin" && route.display) {
         return (
           <NavItem key={key}>
             <NavLink
-              to={prop.path}
-              onClick={(closeCollapse, toggleSidebar)}
+              to={route.path}
+              onClick={(toggleSidebar)}
             >
-              <i className={prop.icon} />
-              {prop.name}
+              <i className={route.icon} />
+              {route.name}
             </NavLink>
           </NavItem>
         );
@@ -95,7 +97,6 @@ const AdminSidebar = (props) => {
     setUsername("");
   };
 
-
   return (
     <>
       <Nav vertical justified className="sidebar" style={getSidebarStyles()}>
@@ -111,7 +112,7 @@ const AdminSidebar = (props) => {
         </div>
         }
         <div className="logo-wrapper p-4">
-          <img src={logo} className="logo p-2"/>
+          <img src={logo} className="logo p-2" role="button" aria-label="home-button" onClick={(e) => logoClick(e)}/>
         </div>
         {router && createLinks()}
         <hr/>

@@ -1,8 +1,7 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
-// reactstrap components
+
 import { Container } from "reactstrap";
-import logo from "../assets/react.svg"
-// core components
+
 import GeneralSidebar from "../components/Sidebars/GeneralSidebar";
 import GeneralNavbar from "../components/Navbars/GeneralNavbar";
 import GeneralFooter from "../components/Footers/GeneralFooter";
@@ -12,7 +11,7 @@ import "../layouts/general.css"
 
 import {routes} from "../routes";
 
-const General = (props) => {
+const General = () => {
   const { isAuthenticated, role } = useAuth();
   const location = useLocation();
 
@@ -36,6 +35,7 @@ const General = (props) => {
     return "Brand";
   };
 
+  //Redirect to admin routes if not an admin.
   if (role === "admin") {
     window.location.pathname = "/admin/index";
   }
@@ -44,20 +44,9 @@ const General = (props) => {
     isAuthenticated?
     <>
     <div className="main-wrapper">
-        <GeneralSidebar
-          {...props}
-          routes={routes}
-          logo={{
-            innerLink: "/general/index",
-            imgSrc: {logo},
-            imgAlt: "...",
-          }}
-        />
+      <GeneralSidebar />
       <div className="main-content" >
-        <GeneralNavbar
-          {...props}
-          brandText={getBrandText(location.pathname)}
-        />
+        <GeneralNavbar brandText={getBrandText(location.pathname)} />
         <Outlet/>
         <Container className="footer-container p-3" fluid>
           <GeneralFooter />

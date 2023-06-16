@@ -34,7 +34,7 @@ export default function Auth() {
         <div className="auth-bg">
             <Container className="auth-wrapper d-flex flex-column align-items-center pt-5">
                 <header className="auth-header text-center py-5">
-                        <h2 className="fw-bold">Bug Tracker</h2>
+                        <h2 className="fw-bold">BugHive</h2>
                         <p>Login or register</p>
                 </header>
                 {/* Page content */}

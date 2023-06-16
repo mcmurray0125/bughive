@@ -1,18 +1,17 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 import { Container } from "reactstrap";
-import logo from "../assets/react.svg"
 
 import AdminSidebar from "../components/Sidebars/AdminSidebar";
 import GeneralNavbar from "../components/Navbars/GeneralNavbar";
 import GeneralFooter from "../components/Footers/GeneralFooter";
 
 import { useAuth } from "../contexts/AuthContext";
-import "../layouts/general.css"
+import "../layouts/general.css" //Same css file for admin and general layouts
 
 import {routes} from "../routes";
 
-const Admin = (props) => {
+const Admin = () => {
   const { isAuthenticated, role } = useAuth();
   const location = useLocation();
 
@@ -44,20 +43,9 @@ const Admin = (props) => {
     isAuthenticated?
     <>
     <div className="main-wrapper">
-        <AdminSidebar
-          {...props}
-          routes={routes}
-          logo={{
-            innerLink: "/admin/index",
-            imgSrc: {logo},
-            imgAlt: "...",
-          }}
-        />
+      <AdminSidebar routes={routes} />
       <div className="main-content" >
-        <GeneralNavbar
-          {...props}
-          brandText={getBrandText(location.pathname)}
-        />
+        <GeneralNavbar brandText={getBrandText(location.pathname)} />
         <Outlet/>
         <Container className="footer-container p-3" fluid>
           <GeneralFooter />

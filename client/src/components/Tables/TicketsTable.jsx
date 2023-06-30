@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { Table, Card, CardHeader, CardBody } from "reactstrap"
+import { Table, Card, CardHeader, CardBody, Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import { SyncLoader } from "react-spinners"
 import moment from "moment"
 import { useNavigate, Link } from "react-router-dom";
@@ -11,6 +11,10 @@ import "../../assets/css/tables.css"
 export default function TicketsTable() {
     const [loading, setLoading] = useState(true);
     const [userTickets, setUserTickets] = useState([{}]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(2);
+    const startIndex = (currentPage - 1) * 4;
+    const endIndex = startIndex + 4;
     const { rootPath } = useAuth();
 
     useEffect(() => {
@@ -48,6 +52,31 @@ export default function TicketsTable() {
         //TODO: useContext to navigate to appropriate layout based on user Role. Instead of hardcoding /admin
       };
 
+
+      // Pagination
+      useEffect(() => {
+        let calculatedPages = Math.ceil(userTickets.length / 4);
+        setTotalPages(calculatedPages);
+      }, [userTickets]);
+
+      useEffect(() => {
+        setCurrentPage(1);
+      }, [totalPages]);
+
+      let items = [];
+      const paginate = (number) => setCurrentPage(number);
+  
+      for (let number = 1; number <= totalPages; number++) {
+        items.push(
+          <PaginationItem key={number} active={currentPage === number} onClick={() => paginate(number)}>
+            <PaginationLink>
+            {number}
+            </PaginationLink>
+          </PaginationItem>
+        );
+      }
+
+
     if (loading) {
         return (
           <div className="loading-wrapper d-flex gap-2">
@@ -78,7 +107,7 @@ export default function TicketsTable() {
                     </tr>
                 </thead>
                 <tbody>
-                    {userTickets.map((ticket) => {
+                    {userTickets.slice(startIndex, endIndex).map((ticket) => {
                         return(
                             <tr
                                 key={ticket.id}
@@ -106,6 +135,9 @@ export default function TicketsTable() {
             </div>
             }
           </CardBody>
+          <Pagination className='w-100 d-flex justify-content-center'>
+            {items}
+          </Pagination>
         </Card>
     )
 }

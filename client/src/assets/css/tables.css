@@ -73,6 +73,21 @@ tbody tr:hover,
   flex: 1.5;
 }
 
+/* PAGINATION */
+.page-link {
+  color: var(--light-text) !important;
+  background-color: var(--link-hover) !important;
+  border-color: var(--loading-color) !important;
+}
+.page-link:hover {
+  background-color: var(--link-color) !important;
+}
+.active .page-link {
+  background-color: var(--link-color) !important;
+  border-color: var(--dark-text) !important;
+  color: var(--light-text) !important;
+}
+
 @media (max-width: 514px) {
   .table-1 {
     font-size: 14px;

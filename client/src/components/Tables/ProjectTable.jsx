@@ -12,8 +12,13 @@ import {
     DropdownItem,
     Card,
     CardHeader,
-    CardBody
+    CardBody,
+    CardFooter,
+    Pagination,
+    PaginationItem,
+    PaginationLink
 } from "reactstrap"
+
 import { Link } from "react-router-dom"
 import { useAuth } from "../../contexts/AuthContext";
 
@@ -31,6 +36,10 @@ export default function ProjectTable() {
     const [selectedProjectId, setSelectedProjectId] = useState(null);
     const [selectedProjectData, setSelectedProjectData] = useState([]);
     const [selectedProjectTeam, setSelectedProjectTeam] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(2);
+    const startIndex = (currentPage - 1) * 4;
+    const endIndex = startIndex + 4;
     const { rootPath } = useAuth();
 
     const toggleNewProject = () => setIsNewProjectOpen(!isNewProjectOpen);
@@ -111,6 +120,28 @@ export default function ProjectTable() {
         }
       };
 
+    // Pagination
+    useEffect(() => {
+        let calculatedPages = Math.ceil(projects.length / 4);
+        setTotalPages(calculatedPages);
+    }, [projects]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [totalPages]);
+
+    let items = [];
+    const paginate = (number) => setCurrentPage(number);
+
+    for (let number = 1; number <= totalPages; number++) {
+        items.push(
+            <PaginationItem key={number} active={currentPage === number} onClick={() => paginate(number)}>
+            <PaginationLink>
+            {number}
+            </PaginationLink>
+            </PaginationItem>
+        );
+    }
 
     if (loading) {
         return (
@@ -149,7 +180,7 @@ export default function ProjectTable() {
                     </thead>
                     <tbody>
                         {projects &&
-                            projects.map((project) => {
+                            projects.slice(startIndex, endIndex).map((project) => {
                                 return(
                                     <tr key={project.id}>
                                         <td><Link to={`${rootPath}/project/${project.id}`}>{project.name}</Link></td>
@@ -201,7 +232,12 @@ export default function ProjectTable() {
                 <p className="m-2">No Projects Found</p>
                 }
             </CardBody>
-            <ToastContainer/>
+            <CardFooter>
+                <Pagination className='w-100 d-flex justify-content-center'>
+                {items}
+                </Pagination>
+            </CardFooter>
+        <ToastContainer/>
         </Card>
     )
 }

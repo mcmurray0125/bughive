@@ -74,18 +74,27 @@ tbody tr:hover,
 }
 
 /* PAGINATION */
+.pagination {
+  margin: 0;
+  display: flex;
+  gap: 0.25rem;
+}
 .page-link {
-  color: var(--light-text) !important;
-  background-color: var(--link-hover) !important;
-  border-color: var(--loading-color) !important;
+  height: 40px !important;
+  width: 40px !important;
+  border-radius: 20px !important;
+  background-color: white !important;
+  border-color: var(--dark-text) !important;
+  color: var(--link-color) !important;
 }
 .page-link:hover {
   background-color: var(--link-color) !important;
+  color: var(--light-text) !important;
 }
 .active .page-link {
-  background-color: var(--link-color) !important;
-  border-color: var(--dark-text) !important;
   color: var(--light-text) !important;
+  background-color: var(--link-hover) !important;
+  border-color: var(--loading-color) !important;
 }
 
 @media (max-width: 514px) {

@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import API from "../../utilities/API";
 import AddTeamMember from "../Forms/AddTeamMember";
 import {
@@ -11,10 +12,12 @@ import {
     DropdownToggle,
     Card,
     CardHeader,
-    CardBody
+    CardBody,
+    CardFooter,
+    Pagination,
+    PaginationItem,
+    PaginationLink
 } from "reactstrap"
-
-import "../../assets/css/tables.css"
 
 export default function ProjectTeamTable({
         setProjectTeam,
@@ -25,6 +28,10 @@ export default function ProjectTeamTable({
         projectData
     })
 {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(2);
+    const startIndex = (currentPage - 1) * 4;
+    const endIndex = startIndex + 4;
 
     const removeTeamMember = async (projectId, userId) => {
         await API.removeTeamMember(projectId, userId);
@@ -32,6 +39,29 @@ export default function ProjectTeamTable({
         const projectTeamRes = await API.getProjectUsers(projectId);
         setProjectTeam(projectTeamRes);
     };
+
+    // Pagination
+    useEffect(() => {
+        let calculatedPages = Math.ceil(projectTeam.length / 4);
+        setTotalPages(calculatedPages);
+    }, [projectTeam]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [totalPages]);
+
+    let items = [];
+    const paginate = (number) => setCurrentPage(number);
+
+    for (let number = 1; number <= totalPages; number++) {
+        items.push(
+            <PaginationItem key={number} active={currentPage === number} onClick={() => paginate(number)}>
+                <PaginationLink>
+                {number}
+                </PaginationLink>
+            </PaginationItem>
+        );
+    }
 
     return(
         <>
@@ -64,7 +94,7 @@ export default function ProjectTeamTable({
                         </tr>
                     </thead>
                     <tbody>
-                    {projectTeam.map((member) => {
+                    {projectTeam.slice(startIndex, endIndex).map((member) => {
                         return(
                             <tr key={member.user_id}>
                                 <td>{member.first_name} {member.last_name}</td>
@@ -100,6 +130,11 @@ export default function ProjectTeamTable({
             }
 
             </CardBody>
+            <CardFooter>
+                <Pagination className='w-100 d-flex justify-content-center'>
+                    {items}
+                </Pagination>
+            </CardFooter>
         </Card>
         </>
     )

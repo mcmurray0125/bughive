@@ -135,7 +135,8 @@
   transition: 0.2s;
 }
 .nav-item a:hover {
-  color: #2c2c2f;
+  background-color: #f0f0f0;
+  color: var(--dark-text);
 }
 .nav-item a.active {
   color: #5932ea;
@@ -151,7 +152,6 @@
   height: 30px;
   background-color: #5932ea;
 }
-
 .nav-item i {
   margin-right: 1rem;
 }

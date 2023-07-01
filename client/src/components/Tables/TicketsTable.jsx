@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import { Table, Card, CardHeader, CardBody, Pagination, PaginationItem, PaginationLink } from "reactstrap"
+import { Table, Card, CardHeader, CardBody, CardFooter, Pagination, PaginationItem, PaginationLink } from "reactstrap"
 import { SyncLoader } from "react-spinners"
 import moment from "moment"
 import { useNavigate, Link } from "react-router-dom";
@@ -68,8 +68,11 @@ export default function TicketsTable() {
   
       for (let number = 1; number <= totalPages; number++) {
         items.push(
-          <PaginationItem key={number} active={currentPage === number} onClick={() => paginate(number)}>
-            <PaginationLink>
+          <PaginationItem
+            key={number}
+            active={currentPage === number}
+            onClick={() => paginate(number)}>
+          <PaginationLink>
             {number}
             </PaginationLink>
           </PaginationItem>
@@ -135,9 +138,11 @@ export default function TicketsTable() {
             </div>
             }
           </CardBody>
-          <Pagination className='w-100 d-flex justify-content-center'>
-            {items}
-          </Pagination>
+          <CardFooter>
+            <Pagination className='w-100 d-flex justify-content-center'>
+              {items}
+            </Pagination>
+          </CardFooter>
         </Card>
     )
 }

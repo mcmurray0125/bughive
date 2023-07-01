@@ -10,7 +10,11 @@ import {
     DropdownItem,
     Card,
     CardHeader,
-    CardBody
+    CardBody,
+    CardFooter,
+    Pagination,
+    PaginationItem,
+    PaginationLink
     } from "reactstrap"
 import API from "../../utilities/API";
 
@@ -34,6 +38,10 @@ export default function ProjectTicketsTable
 
     const [showNewTicketModal, setShowNewTicketModal] = useState(false);
     const [showEditTicketModal, setShowEditTicketModal] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(2);
+    const startIndex = (currentPage - 1) * 4;
+    const endIndex = startIndex + 4;
 
     const toggleEditTicket = () => setShowEditTicketModal(!showEditTicketModal);
     const toggleNewTicket = () => setShowNewTicketModal(!showNewTicketModal);
@@ -51,6 +59,29 @@ export default function ProjectTicketsTable
         if (ticketId === selectedTicketId) {
             return "active-ticket"
         }
+    }
+    
+    // Pagination
+    useEffect(() => {
+        let calculatedPages = Math.ceil(projectTickets.length / 4);
+        setTotalPages(calculatedPages);
+    }, [projectTickets]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [totalPages]);
+
+    let items = [];
+    const paginate = (number) => setCurrentPage(number);
+
+    for (let number = 1; number <= totalPages; number++) {
+        items.push(
+        <PaginationItem key={number} active={currentPage === number} onClick={() => paginate(number)}>
+            <PaginationLink>
+            {number}
+            </PaginationLink>
+        </PaginationItem>
+        );
     }
 
     return(
@@ -90,7 +121,7 @@ export default function ProjectTicketsTable
                         </tr>
                     </thead>
                     <tbody>
-                        {projectTickets.map((ticket) => {
+                        {projectTickets.slice(startIndex, endIndex).map((ticket) => {
                             return(
                                 <tr key={ticket.id} onClick={() => setSelectedTicketId(ticket.id)} id={ticket.id} className={getActive(ticket.id)}>
                                     <td>{ticket.title}</td>
@@ -142,6 +173,11 @@ export default function ProjectTicketsTable
                 </Table>
             }
             </CardBody>
+            <CardFooter>
+                <Pagination className='w-100 d-flex justify-content-center'>
+                    {items}
+                </Pagination>
+          </CardFooter>
         </Card>
         </>
     )

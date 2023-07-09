@@ -20,7 +20,7 @@ export default function SelectedTicket({projectId, selectedTicket, selectedTicke
                   <Row className='selected-ticket-info mb-4'>
                     <Col md="3">
                       <h6 className='mb-1'>Ticket Title</h6>
-                      <h5>{selectedTicket.title}</h5>
+                      <h5 className='selected-ticket-title'>{selectedTicket.title}</h5>
                     </Col>
                     <Col md="3">
                       <h6 className='mb-1'>Creator</h6>

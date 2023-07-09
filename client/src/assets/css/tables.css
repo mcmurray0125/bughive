@@ -23,6 +23,13 @@ tbody tr:hover,
 .active-ticket {
   background-color: #e2ddef;
 }
+.selected-ticket-title {
+  font-weight: 700;
+  color: var(--dark-text);
+}
+.selected-ticket-info .badge {
+  background-color: var(--loading-color) !important;
+}
 
 /* PROJECTS TABLE */
 .table-wrapper {
@@ -76,25 +83,23 @@ tbody tr:hover,
 /* PAGINATION */
 .pagination {
   margin: 0;
-  display: flex;
-  gap: 0.25rem;
 }
 .page-link {
-  height: 40px !important;
-  width: 40px !important;
-  border-radius: 20px !important;
+  /* height: 40px !important;
+  width: 40px !important; */
+  /* border-radius: 20px !important; */
   background-color: white !important;
-  border-color: var(--dark-text) !important;
-  color: var(--link-color) !important;
+  border-color: var(--table-head) !important;
+  color: var(--table-head) !important;
 }
 .page-link:hover {
-  background-color: var(--link-color) !important;
+  background-color: #66557eb2 !important;
   color: var(--light-text) !important;
 }
 .active .page-link {
   color: var(--light-text) !important;
-  background-color: var(--link-hover) !important;
-  border-color: var(--loading-color) !important;
+  background-color: #787083a0 !important;
+  border-color: var(--table-head) !important;
 }
 
 @media (max-width: 514px) {

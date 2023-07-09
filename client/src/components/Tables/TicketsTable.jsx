@@ -12,7 +12,7 @@ export default function TicketsTable() {
     const [loading, setLoading] = useState(true);
     const [userTickets, setUserTickets] = useState([{}]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(2);
+    const [totalPages, setTotalPages] = useState(1);
     const startIndex = (currentPage - 1) * 4;
     const endIndex = startIndex + 4;
     const { rootPath } = useAuth();
@@ -138,11 +138,13 @@ export default function TicketsTable() {
             </div>
             }
           </CardBody>
-          <CardFooter>
-            <Pagination className='w-100 d-flex justify-content-center'>
-              {items}
-            </Pagination>
-          </CardFooter>
+          {totalPages > 1 && 
+                <CardFooter>
+                    <Pagination className='w-100 d-flex justify-content-start'>
+                    {items}
+                    </Pagination>
+                </CardFooter>
+            }
         </Card>
     )
 }

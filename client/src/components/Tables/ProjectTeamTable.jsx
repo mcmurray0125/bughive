@@ -29,7 +29,7 @@ export default function ProjectTeamTable({
     })
 {
     const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(2);
+    const [totalPages, setTotalPages] = useState(1);
     const startIndex = (currentPage - 1) * 4;
     const endIndex = startIndex + 4;
 
@@ -130,11 +130,13 @@ export default function ProjectTeamTable({
             }
 
             </CardBody>
-            <CardFooter>
-                <Pagination className='w-100 d-flex justify-content-center'>
+            {totalPages > 1 && 
+                <CardFooter>
+                    <Pagination className='w-100 d-flex justify-content-start'>
                     {items}
-                </Pagination>
-            </CardFooter>
+                    </Pagination>
+                </CardFooter>
+            }
         </Card>
         </>
     )

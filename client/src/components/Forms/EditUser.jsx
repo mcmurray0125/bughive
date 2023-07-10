@@ -97,7 +97,7 @@ export default function EditUser({props}) {
             </div>
             <FormGroup >
               <Label for="email" className="text-muted">
-                Last Name
+                Email
               </Label>
               <Input
                 type="text"
